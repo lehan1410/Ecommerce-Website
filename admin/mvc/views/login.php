@@ -29,7 +29,7 @@
         </div>
         <p class="my-3 fw-medium text-center fs-1">Quản Trị Viên</p>
 
-        <form method="post">
+        <form method="post" action="">
             <div class="form-group mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" id="email" ng-model="email" class="form-control">

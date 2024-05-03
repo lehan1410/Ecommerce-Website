@@ -19,4 +19,12 @@ class home extends controller{
     static public function edit(){
         self::view('pages/user/edit',[]);
     }
+
+    static public function category(){
+        self::view('pages/category/category',[]);
+    }
+
+    // static public function category(){
+    //     self::view('pages/category/category',[]);
+    // }
 }

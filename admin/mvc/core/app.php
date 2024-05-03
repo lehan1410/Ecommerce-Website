@@ -25,10 +25,18 @@ class app {
             }
         }
 
+        echo $this->controller;
+        echo $this->action;
+
         $this->params = $arr?array_values($arr):[];
-        if ($this->action != "index") {
+
+        if($this->action == "login"){
+            call_user_func_array(["home", "login"], $this->params);
+        }
+        elseif ($this->action != "index") {
             call_user_func_array(["home", "index"], $this->params);
         }
+
         call_user_func_array([$this->controller, $this->action], $this->params);
         
         
