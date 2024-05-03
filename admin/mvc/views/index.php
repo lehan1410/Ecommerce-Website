@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>Admin</title>
 
  
     <link rel="stylesheet" href="../mvc/assets/css/bootstrap.min.css">
@@ -31,22 +31,27 @@
     <!--switchery-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.js"></script>
-
-
-
-<body ng-controller="AppController">
     <div class="wrapper">
-        <?php include('layouts/sidebar.php'); ?>
-
+        <?php include('./mvc/views/layouts/sidebar.php'); ?>
+        <?php
+             
+        ?>
         <div class="main">
 
-            <?php include('layouts/header.php'); ?>
+            <?php include('./mvc/views/layouts/header.php'); ?>
+            <div id="content">
+                <?php
+                    $app = new app();
+                    $a = $app->getAction();
+                    if($a == "index"){
+                        include('dashboard.html');
+                    }
+                ?>
 
-            <ng-view></ng-view>
+            </div>
 
         </div>
+        
     </div>
-
-</body>
 
 </html>

@@ -5,39 +5,39 @@
         </button>
 
         <div class="sidebar-logo">
-            <a href="index.html">
+            <a href="index">
                 <img src="../mvc/assets/img/logo.png" class="img-fluid">
             </a>
         </div>
     </div>
     <ul class="sidebar-nav d-flex flex-column gap-3">
         <li class="sidebar-item">
-            <a href="index.html" class="sidebar-link">
+            <a href="index" class="sidebar-link">
                 <i class="fa-solid fa-home"></i>
                 <span>Trang Chủ</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth"
+            <a href="" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#auth"
                 aria-expanded="false" aria-controls="auth">
                 <i class="fa-solid fa-user-group"></i>
                 <span>Người Dùng</span>
             </a>
             <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="#!user" class="sidebar-link">Quản Lý Người Dùng</a>
+                    <a href="user" class="sidebar-link">Quản Lý Người Dùng</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#!user/add" class="sidebar-link">Thêm Người Dùng Mới</a>
+                    <a href="add" class="sidebar-link">Thêm Người Dùng Mới</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Quản Trị Viên</a>
+                    <a href="edit" class="sidebar-link">Quản Trị Viên</a>
                 </li>
             </ul>
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#category"
+            <a href="#" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#category"
                 aria-expanded="false" aria-controls="category">
                 <i class="fa-solid fa-layer-group"></i>
                 <span>Danh Mục</span>
@@ -55,7 +55,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#product"
+            <a href="#" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#product"
                 aria-expanded="false" aria-controls="product">
                 <i class="fa-brands fa-slack"></i>
                 <span>Sản Phẩm</span>
@@ -71,7 +71,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#discount"
+            <a href="#" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#discount"
                 aria-expanded="false" aria-controls="discount">
                 <i class="fa-solid fa-tags"></i>
                 <span>Mã Giảm Giá</span>
@@ -84,7 +84,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#order"
+            <a href="#" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#order"
                 aria-expanded="false" aria-controls="order">
                 <i class="fa-solid fa-money-bills"></i>
                 <span>Đơn Hàng</span>
@@ -98,7 +98,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#feedback"
+            <a href="#" class="sidebar-link collapsed has-dropdown a" data-bs-toggle="collapse" data-bs-target="#feedback"
                 aria-expanded="false" aria-controls="feedback">
                 <i class="fa-solid fa-message"></i>
                 <span>Phản Hồi</span>
@@ -131,4 +131,5 @@
             <span>Đăng Xuất</span>
         </a>
     </div>
+    <script src="../mvc/assets/js/navbar.js"></script>
 </aside>

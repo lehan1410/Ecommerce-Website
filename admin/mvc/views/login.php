@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="TokyoLife">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <title>Đăng Nhập</title>
 
     <link rel="stylesheet" href="./mvc/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./mvc/assets/css/style.css">
+    <link rel="stylesheet" href="../mvc/assets/css/style.css">
 
 
     <script src="https://kit.fontawesome.com/d99fedf711.js" crossorigin="anonymous"></script>
@@ -23,13 +23,13 @@
 
 <body>
 
-    <div class="container my-5 w-25 m-auto" ng-controller="LoginController">
+    <div class="container my-5 w-25 m-auto">
         <div class="w-100 d-flex align-items-center">
             <img src="./mvc/assets/img/logo.png" class="d-block w-100 m-auto">
         </div>
         <p class="my-3 fw-medium text-center fs-1">Quản Trị Viên</p>
 
-        <form>
+        <form method="post">
             <div class="form-group mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" id="email" ng-model="email" class="form-control">

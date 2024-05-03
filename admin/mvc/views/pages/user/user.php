@@ -6,7 +6,7 @@
     <div class="px-5">
 
         <div class="d-flex justify-content-between align-items-center mt-5">
-            <a href="#!user/add" class="btn btn-danger">Thêm Người Dùng Mới
+            <a href="add" class="btn btn-danger">Thêm Người Dùng Mới
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -35,7 +35,7 @@
                         <span ng-if="user.role === 'user'">Khách Hàng</span>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="#!user/edit/{{ user._id }}">
+                        <a class="btn btn-primary" href="edit">
                             <i class="fas fa-edit"></i>
                         </a>
                         <button class="btn btn-danger" ng-click="deleteUser(user)">

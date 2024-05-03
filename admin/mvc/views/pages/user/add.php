@@ -8,7 +8,7 @@
             <div class="col-3 pe-5">
                 <div
                     class="p-2 pb-5 d-flex flex-column align-items-center justify-content-between border shadow-sm rounded-3">
-                    <img src="../../../mvc/assets/img/avatar.jpg" alt="" class="img-fluid w-50 m-auto">
+                    <img src="../mvc/assets/img/avatar.jpg" alt="" class="img-fluid w-50 m-auto">
                     <input type="file" name="avatar" id="avatar">
                     <label for="" class="avatar">Chọn Ảnh</label>
                 </div>
