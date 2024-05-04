@@ -8,21 +8,9 @@ class home extends controller{
         self::view('index',[]);
     }
 
-    static public function add(){
-        self::view('pages/user/add',[]);
-    }
-
-    static public function user(){
-        self::view('pages/user/user',[]);
-    }
-
-    static public function edit(){
-        self::view('pages/user/edit',[]);
-    }
-
-    static public function category(){
-        self::view('pages/category/category',[]);
-    }
+    // static public function category(){
+    //     self::view('pages/category/category',[]);
+    // }
 
     // static public function category(){
     //     self::view('pages/category/category',[]);

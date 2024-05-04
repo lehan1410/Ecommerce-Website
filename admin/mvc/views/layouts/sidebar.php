@@ -25,13 +25,13 @@
             </a>
             <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="user" class="sidebar-link">Quản Lý Người Dùng</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/user/user" class="sidebar-link">Quản Lý Người Dùng</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="add" class="sidebar-link">Thêm Người Dùng Mới</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/user/add" class="sidebar-link">Thêm Người Dùng Mới</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="edit" class="sidebar-link">Quản Trị Viên</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/user/edit" class="sidebar-link">Quản Trị Viên</a>
                 </li>
             </ul>
         </li>
@@ -62,10 +62,10 @@
             </a>
             <ul id="product" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="#!product" class="sidebar-link">Quản Lý Sản Phẩm</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/product/product" class="sidebar-link">Quản Lý Sản Phẩm</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="add" class="sidebar-link">Thêm Sản Phẩm</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/product/add" class="sidebar-link">Thêm Sản Phẩm</a>
                 </li>
             </ul>
         </li>
