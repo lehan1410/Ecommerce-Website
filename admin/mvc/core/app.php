@@ -7,8 +7,9 @@ class app {
     protected $params=[];
 
     function __construct() {
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'home.php';
         $arr = $this->url_process();
-
+        
         if (is_array($arr) && count($arr) > 0) {
             $controllerPath = "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $arr[0] . ".php";
             if(file_exists($controllerPath)){
@@ -25,21 +26,22 @@ class app {
             }
         }
 
-        echo $this->controller;
-        echo $this->action;
-
         $this->params = $arr?array_values($arr):[];
 
+        // echo $this->controller;
+        // echo $this->action;
+
+        // $this->params = $arr?array_values($arr):[];
+
+        
         if($this->action == "login"){
             call_user_func_array(["home", "login"], $this->params);
         }
-        elseif ($this->action != "index") {
+        else {
             call_user_func_array(["home", "index"], $this->params);
         }
 
-        call_user_func_array([$this->controller, $this->action], $this->params);
-        
-        
+        // call_user_func_array([$this->controller, $this->action], $this->params);
  
     }
 
