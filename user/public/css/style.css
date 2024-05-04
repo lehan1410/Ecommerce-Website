@@ -108,6 +108,14 @@ body {
   transition: 0.3s ease;
 }
 
+#navbar li .avatar {
+  width: 35px; /* Điều chỉnh kích thước hình ảnh avt */
+  height: 35px; /* Điều chỉnh kích thước hình ảnh avt */
+  border-radius: 50%; /* Tạo hình tròn */
+  overflow: hidden; /* Đảm bảo hình ảnh là hình tròn */
+  object-fit: cover; /* Đảm bảo hình ảnh không bị kéo dài */
+}
+
 #navbar li a:hover,
 #navbar li a.active{
   color: #088178;
@@ -115,6 +123,10 @@ body {
 
 #navbar li a.active{
   color: #088178;
+}
+
+#navbar li .avatar:hover {
+  
 }
 
 #navbar li a.active::after,
@@ -533,8 +545,6 @@ footer .copyright {
   width: 100%;
   text-align: center;
 }
-
-
 
 /* Shop Page */
 #page-header{
