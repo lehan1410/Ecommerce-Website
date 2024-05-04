@@ -126,7 +126,7 @@
     </ul>
 
     <div class="sidebar-footer">
-        <a ng-click="logout()" class="sidebar-link">
+        <a class="sidebar-link" href="http://localhost:8080/Ecommerce-Website/admin/">
             <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
             <span>Đăng Xuất</span>
         </a>

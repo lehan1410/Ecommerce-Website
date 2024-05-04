@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
 
- 
+    <base href="http://localhost:8080/Ecommerce-Website/admin/mvc/assets">
     <link rel="stylesheet" href="../mvc/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../mvc/assets/css/style.css">
     

@@ -2,7 +2,7 @@
 
 class app {
 
-    protected $controller="home";
+    protected $controller="login";
     protected $action="login";
     protected $params=[];
 
@@ -25,24 +25,19 @@ class app {
                 unset($arr[1]);
             }
         }
-
-        $this->params = $arr?array_values($arr):[];
-
-        // echo $this->controller;
-        // echo $this->action;
-
-        // $this->params = $arr?array_values($arr):[];
-
+      
         
+        $this->params = $arr?array_values($arr):[];
+        if($this->params != null && $this->params[0] == "fail"){
+            $this->params = ["Login Fail"];
+        }
+
         if($this->action == "login"){
-            call_user_func_array(["home", "login"], $this->params);
+            call_user_func_array(["login", "login"], $this->params);
         }
         else {
             call_user_func_array(["home", "index"], $this->params);
         }
-
-        // call_user_func_array([$this->controller, $this->action], $this->params);
- 
     }
 
     function url_process(){
