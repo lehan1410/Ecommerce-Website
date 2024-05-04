@@ -1,6 +1,6 @@
 <?php
-class home {
-    static function sayHi(){
-        echo "Hi";
+class home extends controller{
+    static public function index(){
+        self::view('index',[]);
     }
 }
