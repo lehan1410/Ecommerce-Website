@@ -1,12 +1,12 @@
 <div class="content">
     <div class="shadow-sm px-5 py-3 shadow-lg">
-        <h5 class="mb-0 fw-semibold">Thêm Danh Mục Mới</h4>
+        <h5 class="mb-0 fw-semibold">Danh Mục</h4>
     </div>
 
     <div class="px-5">
 
         <!--form thêm danh mục-->
-        <button class="btn btn-danger mt-5" ng-click="toggleAddCategoryForm()">
+        <!-- <button class="btn btn-danger mt-5" ng-click="toggleAddCategoryForm()">
             Thêm Danh Mục Mới
             <i class="fas fa-plus"></i>
         </button>
@@ -18,7 +18,7 @@
             </div>
 
             <button type="submit" class="btn btn-danger">Thêm Danh Mục</button>
-        </form>
+        </form> -->
 
         <!--form sửa danh mục-->
 

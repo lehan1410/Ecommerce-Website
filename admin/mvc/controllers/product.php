@@ -4,8 +4,8 @@ class product extends controller{
         self::view('pages/product/add',[]);
     }
 
-    static public function user(){
-        self::view('pages/product/user',[]);
+    static public function edit(){
+        self::view('pages/product/edit',[]);
     }
 
     static public function product(){

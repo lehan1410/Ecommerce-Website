@@ -5,14 +5,14 @@
         </button>
 
         <div class="sidebar-logo">
-            <a href="index">
+            <a href="http://localhost:8080/Ecommerce-Website/admin/home/index">
                 <img src="../mvc/assets/img/logo.png" class="img-fluid">
             </a>
         </div>
     </div>
     <ul class="sidebar-nav d-flex flex-column gap-3">
         <li class="sidebar-item">
-            <a href="index" class="sidebar-link">
+            <a href="http://localhost:8080/Ecommerce-Website/admin/home/index" class="sidebar-link">
                 <i class="fa-solid fa-home"></i>
                 <span>Trang Chủ</span>
             </a>
@@ -44,11 +44,11 @@
             </a>
             <ul id="category" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="category" class="sidebar-link">Quản Lý Danh Mục</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/category/category" class="sidebar-link">Quản Lý Danh Mục</a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#!category/add" class="sidebar-link">Thêm Danh Mục Mới</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/category/add" class="sidebar-link">Thêm Danh Mục Mới</a>
                 </li>
 
             </ul>
@@ -78,7 +78,7 @@
             </a>
             <ul id="discount" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="#!coupon" class="sidebar-link">Quản Lý Mã </a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/coupon/coupon" class="sidebar-link">Quản Lý Mã </a>
                 </li>
             </ul>
         </li>
@@ -91,7 +91,7 @@
             </a>
             <ul id="order" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="#!order" class="sidebar-link">Quản Lý Đơn Hàng</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/order/order" class="sidebar-link">Quản Lý Đơn Hàng</a>
                 </li>
 
             </ul>
@@ -105,13 +105,13 @@
             </a>
             <ul id="feedback" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="#!feedback" class="sidebar-link">Phản Hồi Khách Hàng</a>
+                    <a href="http://localhost:8080/Ecommerce-Website/admin/feedback/feedback" class="sidebar-link">Phản Hồi Khách Hàng</a>
                 </li>
             </ul>
         </li>
 
         <li class="sidebar-item">
-            <a href="#!statistical" class="sidebar-link">
+            <a href="http://localhost:8080/Ecommerce-Website/admin/statistical/statistical" class="sidebar-link">
                 <i class="fa-solid fa-chart-simple"></i>
                 <span>Thống Kê</span>
             </a>
