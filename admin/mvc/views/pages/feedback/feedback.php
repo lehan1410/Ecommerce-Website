@@ -32,7 +32,7 @@
                         </div>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="#!feedback/{{ product._id }}">
+                        <a class="btn btn-danger" href="http://localhost:8080/Ecommerce-Website/admin/feedback/detail">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>

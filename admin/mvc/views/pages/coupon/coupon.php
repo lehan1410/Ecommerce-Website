@@ -6,7 +6,7 @@
     <div class="px-5">
         <div class="d-flex justify-content-between mt-5">
             <div class="d-flex">
-                <a class="btn btn-danger" href="#!coupon/add">Thêm Mã
+                <a class="btn btn-danger" href="http://localhost:8080/Ecommerce-Website/admin/coupon/add">Thêm Mã
                     <i class="fa-solid fa-plus"></i>
                 </a>
             </div>

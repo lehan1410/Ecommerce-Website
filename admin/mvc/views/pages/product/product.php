@@ -5,7 +5,7 @@
 
     <div class="px-5">
         <div class="d-flex justify-content-between align-items-center mt-5">
-            <a href="#!product/add" class="btn btn-danger">Thêm Sản Phẩm Mới
+            <a href="http://localhost:8080/Ecommerce-Website/admin/product/add" class="btn btn-danger">Thêm Sản Phẩm Mới
                 <i class="fas fa-plus"></i>
             </a>
         </div>

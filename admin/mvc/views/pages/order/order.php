@@ -31,7 +31,7 @@
                         <span class="badge text-bg-danger" ng-if="order.status === 'Đã Hủy'">Đã Hủy</span>
                     </td>
                     <td>
-                        <a href="#!order/detail/{{ order._id }}" class="btn btn-sm btn-danger">Xem</a>
+                        <a href="http://localhost:8080/Ecommerce-Website/admin/order/detail" class="btn btn-sm btn-danger">Xem</a>
                     </td>
                 </tr>
             </tbody>

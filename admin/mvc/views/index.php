@@ -45,7 +45,7 @@
                     $a = $app->getAction();
                     if($a == "index"){
                         include('dashboard.html');
-                    }elseif ($a != "login"){
+                    }else{
                         call_user_func_array([$app->getController(), $a], $app->getParams());
                     }
                 ?>
