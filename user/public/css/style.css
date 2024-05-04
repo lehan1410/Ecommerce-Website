@@ -125,9 +125,6 @@ body {
   color: #088178;
 }
 
-#navbar li .avatar:hover {
-  
-}
 
 #navbar li a.active::after,
 #navbar li a:hover::after {
