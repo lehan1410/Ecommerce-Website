@@ -24,27 +24,27 @@
 
     <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="../img/features/f1.png" alt="img">
+            <img src="../mvc/assets/img/features/f1.png" alt="img">
             <h6>Free Shipping</h6>
         </div>
         <div class="fe-box">
-            <img src="../img/features/f2.png" alt="img">
+            <img src="../mvc/assets/img/features/f2.png" alt="img">
             <h6>Online Order</h6>
         </div>
         <div class="fe-box">
-            <img src="../img/features/f3.png" alt="img">
+            <img src="../mvc/assets/img/features/f3.png" alt="img">
             <h6>Save Money</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f4.png" alt="img">
+            <img src="../mvc/assets/img/features/f4.png" alt="img">
             <h6>Promotions</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f5.png" alt="img">
+            <img src="../mvc/assets/img/features/f5.png" alt="img">
             <h6>Happy Sell</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f6.png" alt="img">
+            <img src="../mvc/assets/img/features/f6.png" alt="img">
             <h6>F24/7 Support</h6>
         </div>
     </section>
@@ -54,7 +54,7 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
             <div class="pro">
-                <img src="img/products/f1.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f1.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -70,7 +70,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f2.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f2.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -86,7 +86,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f3.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f3.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -102,7 +102,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f4.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f4.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -118,7 +118,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f5.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f5.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -134,7 +134,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f6.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f6.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -150,7 +150,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f7.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f7.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -166,7 +166,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/f8.jpg" alt="img">
+                <img src="../mvc/assets/img/products/f8.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -195,7 +195,7 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
             <div class="pro">
-                <img src="img/products/n1.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n1.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -211,7 +211,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n2.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n2.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -227,7 +227,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n3.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n3.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -243,7 +243,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n4.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n4.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -259,7 +259,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n5.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n5.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -275,7 +275,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n6.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n6.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -291,7 +291,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n7.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n7.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
@@ -307,7 +307,7 @@
                 <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro">
-                <img src="img/products/n8.jpg" alt="img">
+                <img src="../mvc/assets/img/products/n8.jpg" alt="img">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
