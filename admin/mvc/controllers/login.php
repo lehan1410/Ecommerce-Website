@@ -11,7 +11,7 @@ class login extends controller{
         $a = new loginModels();
         $result = mysqli_num_rows($a->login($email, $password));
         if ($result == 1) {
-            header('Location: http://localhost:8080/Ecommerce-Website/admin/home/index');
+            header('Location: http://localhost:8080/Ecommerce-Website/admin/dashboard/index');
         }else {
             header('Location: http://localhost:8080/Ecommerce-Website/admin/login/login/fail');
         }

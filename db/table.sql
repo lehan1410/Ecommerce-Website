@@ -122,7 +122,7 @@ CREATE TABLE  `order_details`(
   `price` DECIMAL(10, 2) NOT NULL,
   `total_amount` INT UNSIGNED NOT NULL,
   `total_price` DECIMAL (10, 2) NOT NULL, 
-  `status` INT DEFAULT 0,
+  `status` NVARCHAR(50) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`order_id`) REFERENCES orders(`order_id`),
@@ -202,7 +202,7 @@ INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, 
 ('Nike Benassi', '4', '50', '55', '6', '3', 'img/products/n35.jpg'),
 ('Crocs', '4', '20', '30', '5', '3', 'img/products/n36.jpg'),
 ('Flip-flops Summer', '4', '25', '40', '7', '2', 'img/products/n37.jpg'),
-('Havaianas Basic', '4', '15', '100', '5', '4', 'img/products/n38.jpg'),
+('Havaianas Basic', '4', '15', '100', '5', '4', 'img/products/n38.jpg'), 
 ('Martin Boots', '4', '55', '30', '5', '4', 'img/products/n39.jpg'),
 ('Sport Adidas', '4', '60', '120', '6', '3', 'img/products/n40.jpg');
 

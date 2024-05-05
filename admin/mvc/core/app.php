@@ -7,7 +7,7 @@ class app {
     protected $params=[];
 
     function __construct() {
-        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'home.php';
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'dashboard.php';
         $arr = $this->url_process();
         
         if (is_array($arr) && count($arr) > 0) {
@@ -30,15 +30,14 @@ class app {
         $this->params = $arr?array_values($arr):[];
 
         if(count($this->params) != 0 && $this->params[0] == "fail"){
-            $this->params = "Login Fail";
+            $this->params = ["Login Fail"];
         }
 
         if($this->action == "login"){
             call_user_func_array(["login", "login"], $this->params);
         }
         else {
-
-            call_user_func_array(["home", "index"], $this->params);
+            call_user_func_array(["dashboard", "index"], $this->params);
         }
 
     }

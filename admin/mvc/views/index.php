@@ -44,7 +44,7 @@
                     $app = new app();
                     $a = $app->getAction();
                     if($a == "index"){
-                        include('dashboard.html');
+                        include('dashboard.php');
                     }else{
                         call_user_func_array([$app->getController(), $a], $app->getParams());
                     }

@@ -2,6 +2,7 @@
     <div class="shadow-sm px-5 py-3 shadow-lg">
         <h5 class="mb-0 fw-semibold">Admin Dashboard</h4>
     </div>
+   
 
     <div class="px-5">
 
@@ -49,7 +50,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <p class="card-title fw-medium fs-5">Sản Phẩm</p>
-                                <h5 class="fw-bold">1.149</h5>
+                                <?php
+                                    echo "<h5 class='fw-bold'>$data[product]</h5>";
+                                ?>
                             </div>
                         </div>
                     </div>
