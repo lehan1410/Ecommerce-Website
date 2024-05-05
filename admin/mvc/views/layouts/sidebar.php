@@ -118,18 +118,20 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="" class="sidebar-link">
+            <a href="" class="sidebar-link" >
                 <i class="fa-solid fa-envelope"></i>
                 <span>Hộp Thư</span>
             </a>
         </li>
+
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="http://localhost:8080/Ecommerce-Website/admin">
+                <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
+                <span>Đăng Xuất</span>
+        </a>
+        </li>
+        
     </ul>
 
-    <div class="sidebar-footer">
-        <a class="sidebar-link" href="http://localhost:8080/Ecommerce-Website/admin/">
-            <i class="fa-solid fa-right-from-bracket fa-rotate-180"></i>
-            <span>Đăng Xuất</span>
-        </a>
-    </div>
     <script src="../mvc/assets/js/navbar.js"></script>
 </aside>

@@ -28,16 +28,19 @@ class app {
       
         
         $this->params = $arr?array_values($arr):[];
-        if($this->params != null && $this->params[0] == "fail"){
-            $this->params = ["Login Fail"];
+
+        if(count($this->params) != 0 && $this->params[0] == "fail"){
+            $this->params = "Login Fail";
         }
 
         if($this->action == "login"){
             call_user_func_array(["login", "login"], $this->params);
         }
         else {
+
             call_user_func_array(["home", "index"], $this->params);
         }
+
     }
 
     function url_process(){

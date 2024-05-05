@@ -39,7 +39,7 @@
         <div class="main">
 
             <?php include('./mvc/views/layouts/header.php'); ?>
-            <div id="content">
+            <div class="content">
                 <?php
                     $app = new app();
                     $a = $app->getAction();
