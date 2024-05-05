@@ -17,14 +17,16 @@ ALTER TABLE `admin`
 
 CREATE TABLE `users` (
   `user_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `first_name` NVARCHAR(255) NOT NULL,
-  `last_name` NVARCHAR(255) NOT NULL,
   `username` NVARCHAR(50) NOT NULL UNIQUE,
   `email` NVARCHAR(100) NOT NULL UNIQUE,
   `password` NVARCHAR(255) NOT NULL,
+  `city` NVARCHAR(255),
+  `province` NVARCHAR(255),
+  `ward` NVARCHAR(255),
   `address` NVARCHAR(255),
   `phone` VARCHAR(20),
   `is_active` BOOLEAN DEFAULT TRUE,
+  `authority` INT DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -34,6 +36,15 @@ CREATE TABLE  `categories` (
   `category_name` NVARCHAR(100) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS coupons (
+  `coupon_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `coupon_code` VARCHAR(20) NOT NULL UNIQUE,
+  `discount` DECIMAL(5, 2) NOT NULL,
+  `expiry` TIMESTAMP,
+  `flash_sale` INT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE  `product_colors` (
@@ -60,11 +71,13 @@ CREATE TABLE  `products` (
   `color_id` INT UNSIGNED,
   `size_id` INT UNSIGNED,
   `image` VARCHAR(255) NOT NULL,
+  `coupon_id` INT UNSIGNED, 
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`category_id`) REFERENCES categories(`category_id`),
   FOREIGN KEY (`color_id`) REFERENCES product_colors(`color_id`),
-  FOREIGN KEY (`size_id`) REFERENCES product_sizes(`size_id`)
+  FOREIGN KEY (`size_id`) REFERENCES product_sizes(`size_id`),
+  FOREIGN KEY (`coupon_id`) REFERENCES coupons(`coupon_id`)
 );
 
 
@@ -101,22 +114,21 @@ CREATE TABLE  `cart` (
 -- Orders Table
 CREATE TABLE  `orders` (
   `order_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `cart_id` INT UNSIGNED,
   `user_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
-  `username` NVARCHAR(50) NOT NULL UNIQUE,
-  `order_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `amount` INT UNSIGNED NOT NULL,
   `total_amount` DECIMAL(10, 2) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` INT DEFAULT 0,
   FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
-  FOREIGN KEY (`username`) REFERENCES users(`username`),
-  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`),
+  FOREIGN KEY (`cart_id`) REFERENCES cart(`cart_id`)
 );
 
 -- Order Details Table
 CREATE TABLE  `order_details`(
   `order_detail_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `order_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   `quantity` INT UNSIGNED NOT NULL,
   `price` DECIMAL(10, 2) NOT NULL,
@@ -125,7 +137,7 @@ CREATE TABLE  `order_details`(
   `status` NVARCHAR(50) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`order_id`) REFERENCES orders(`order_id`),
+  FOREIGN KEY (`order_detail_id`) REFERENCES orders(`order_id`),
   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
 );
 
@@ -255,23 +267,3 @@ INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, 
 -- ('47', 'Martin Boots', '4', '55', '30', '5', '4', 'img/products/n39.jpg'),
 -- ('48', 'Sport Adidas', '4', '60', '120', '6', '3', 'img/products/n40.jpg')
 
-
--- Coupons Table
--- CREATE TABLE IF NOT EXISTS coupons (
---   coupon_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
---   coupon_code VARCHAR(20) NOT NULL UNIQUE,
---   discount DECIMAL(5, 2) NOT NULL,
---   start_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   expiration_date TIMESTAMP,
---   'created_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---   'updated_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
---   INDEX(coupon_code),
---   CHECK (
---       discount >= 0
---       AND discount <= 100
---   ),
---   CHECK (
---       start_date <= expiration_date
---       OR expiration_date IS NULL
---   )
--- );

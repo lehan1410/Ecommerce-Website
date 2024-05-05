@@ -5,14 +5,14 @@
         </button>
 
         <div class="sidebar-logo">
-            <a href="http://localhost:8080/Ecommerce-Website/admin/home/index">
+            <a href="http://localhost:8080/Ecommerce-Website/admin/dashboard/index">
                 <img src="../mvc/assets/img/logo.png" class="img-fluid">
             </a>
         </div>
     </div>
     <ul class="sidebar-nav d-flex flex-column gap-3">
         <li class="sidebar-item">
-            <a href="http://localhost:8080/Ecommerce-Website/admin/home/index" class="sidebar-link">
+            <a href="http://localhost:8080/Ecommerce-Website/admin/dashboard/index" class="sidebar-link">
                 <i class="fa-solid fa-home"></i>
                 <span>Trang Chủ</span>
             </a>
