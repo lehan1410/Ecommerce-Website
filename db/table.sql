@@ -39,14 +39,7 @@ CREATE TABLE  `categories` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS coupons (
-  `coupon_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `coupon_code` VARCHAR(20) NOT NULL UNIQUE,
-  `discount` DECIMAL(5, 2) NOT NULL,
-  `expiry` TIMESTAMP,
-  `flash_sale` INT DEFAULT 0,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+
 
 CREATE TABLE  `product_colors` (
   `color_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -72,50 +65,55 @@ CREATE TABLE  `products` (
   `color_id` INT UNSIGNED,
   `size_id` INT UNSIGNED,
   `image` VARCHAR(255) NOT NULL,
-  `coupon_id` INT UNSIGNED, 
+  `coupon_id` INT UNSIGNED DEFAULT NULL, 
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`category_id`) REFERENCES categories(`category_id`),
   FOREIGN KEY (`color_id`) REFERENCES product_colors(`color_id`),
-  FOREIGN KEY (`size_id`) REFERENCES product_sizes(`size_id`),
-  FOREIGN KEY (`coupon_id`) REFERENCES coupons(`coupon_id`)
+  FOREIGN KEY (`size_id`) REFERENCES product_sizes(`size_id`)
+  -- FOREIGN KEY (`coupon_id`) REFERENCES coupons(`coupon_id`)
 );
 
 
-CREATE TABLE  `product_images` (
-  `image_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `product_id` INT UNSIGNED NOT NULL,
-  `image_path` VARCHAR(255) NOT NULL,
-  -- `is_main_image` BOOLEAN DEFAULT FALSE,
+CREATE TABLE IF NOT EXISTS coupouns (
+  `coupoun_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `product_id` INT UNSIGNED,
+  `coupoun_code` VARCHAR(20) NOT NULL UNIQUE,
+  `discount` DECIMAL(5, 2) NOT NULL,
+  `expiry` TIMESTAMP,
+  `flash_sale` INT DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
 );
 
-CREATE TABLE  `product_amount` (
-  `product_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `amount` INT NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+
+-- CREATE TABLE  `product_images` (
+--   `image_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+--   `product_id` INT UNSIGNED NOT NULL,
+--   `image_path` VARCHAR(255) NOT NULL,
+--   -- `is_main_image` BOOLEAN DEFAULT FALSE,
+--   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+-- );
 
 -- Products Table
-CREATE TABLE  `cart` (
-  `cart_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `user_id` INT UNSIGNED NOT NULL,
-  `product_id` INT UNSIGNED NOT NULL,
-  `quantity` INT UNSIGNED NOT NULL,
-  `date_added` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
-  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
-);
+-- CREATE TABLE  `cart` (
+--   `cart_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+--   `user_id` INT UNSIGNED NOT NULL,
+--   `product_id` INT UNSIGNED NOT NULL,
+--   `quantity` INT UNSIGNED NOT NULL,
+--   `date_added` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+--   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+-- );
 
 -- Orders Table
 CREATE TABLE  `orders` (
   `order_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `cart_id` INT UNSIGNED,
+  -- `cart_id` INT UNSIGNED,
   `user_id` INT UNSIGNED NOT NULL,
   `product_id` INT UNSIGNED NOT NULL,
   `amount` INT UNSIGNED NOT NULL,
@@ -123,8 +121,8 @@ CREATE TABLE  `orders` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `status` INT DEFAULT 0,
   FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
-  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`),
-  FOREIGN KEY (`cart_id`) REFERENCES cart(`cart_id`)
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+  -- FOREIGN KEY (`cart_id`) REFERENCES cart(`cart_id`)
 );
 
 -- Order Details Table
@@ -234,7 +232,6 @@ INSERT INTO `orders` (`user_id`, `product_id`, `amount`, `total_amount`) VALUES
 ('3', '7', '2', (SELECT SUM(amount) FROM (SELECT 1 AS amount UNION ALL SELECT 2 AS amount) AS amounts));
 
 
--- 40, 45, 50, 55, 40, 30, 70
 INSERT INTO `order_details` (`product_id`, `quantity`, `price`, `total_amount`, `total_price`,  `status`) VALUES
 ('1', '1', '40', '3', '140', 'Da xac nhan'),
 ('3', '2', '50', '3', '140', 'Da xac nhan'),
@@ -242,10 +239,10 @@ INSERT INTO `order_details` (`product_id`, `quantity`, `price`, `total_amount`, 
 ('4', '3', '55', '5', '265', 'Cho xac nhan'),
 ('5', '1', '40', '4', '210', 'Chua xac nhan'),
 ('6', '1', '30', '4', '210', 'Chua xac nhan'),
-('7', '2', '70', '4', '210', 'Chua xac nhan')
+('7', '2', '70', '4', '210', 'Chua xac nhan');
 
--- INSERT INTO `coupouns` (`product_id`, `coupoun_code`, `discount`, `expiry`, `flash_sale`) VALUES
--- ('1', 'A01', '0.05', '2024-06-01', 0),
--- ('2', 'A02', '0.01', '2024-05-25', 1),
--- ('3', 'B01', '0.02', '2024-04-20', 0),
--- ('4', 'B02', '0.35', '2024-05-15', 1);
+INSERT INTO `coupouns` (`product_id`, `coupoun_code`, `discount`, `expiry`) VALUES
+('1', 'A01', '0.05', '2024-06-01'),
+('2', 'A02', '0.01', '2024-05-25'),
+('3', 'B01', '0.02', '2024-04-20'),
+('4', 'B02', '0.35', '2024-05-15');
