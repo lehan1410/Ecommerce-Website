@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập</title>
+    <base href="http://localhost:8080/Ecommerce-Website/admin/">
 
     <link rel="stylesheet" href="./mvc/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../mvc/assets/css/style.css">
@@ -28,22 +29,30 @@
             <img src="./mvc/assets/img/logo.png" class="d-block w-100 m-auto">
         </div>
         <p class="my-3 fw-medium text-center fs-1">Quản Trị Viên</p>
+        
 
-        <form method="post" action="">
+        <form method="post" action="login/loginAction">
             <div class="form-group mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" ng-model="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control">
             </div>
 
             <div class="form-group mb-3">
                 <label for="password" class="form-label">Mật Khẩu</label>
-                <input type="password" name="password" id="password" ng-model="password" class="form-control">
+                <input type="password" name="password" id="password" class="form-control">
             </div>
 
             <div class="form-group my-3">
                 <button type="submit" class="btn btn-danger w-100">Đăng Nhập</button>
             </div>
+
         </form>
+        <?php
+            if ($data != null) {
+                echo "<p class='text-danger'>$data[0]</p>";
+            }
+        ?>
+        
     </div>
 
 </body>

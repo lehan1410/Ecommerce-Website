@@ -7,6 +7,7 @@ class app {
 
     function __construct() {
         $arr = $this->url_process();
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."login.php";
         require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."home.php";
         if (is_array($arr) && count($arr) > 0) {
             $controllerPath = "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $arr[0] . ".php";
@@ -24,11 +25,28 @@ class app {
                 unset($arr[1]);
             }
         }
+        // echo $this->controller;
+        // echo $this->action;
+
+        if($this->controller == "login" && $this->action == "index"){
+            $this->action = "login";
+        }
+
+
 
         $this->params = $arr?array_values($arr):[];
 
+        // echo $this->params != null;
+        // if($this->params != null){
+        //     call_user_func_array(["login", "login"], $this->params);
+        // }
+
         if($this->action == "login"){
             call_user_func_array(["login", "login"], $this->params);
+        }
+        elseif($this->action == "registration"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."registration.php";
+            call_user_func_array(["registration", "registration"], $this->params);
         }
         else {
             call_user_func_array(["home", "index"], $this->params);
