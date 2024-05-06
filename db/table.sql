@@ -1,16 +1,271 @@
 CREATE DATABASE IF NOT EXISTS `Ecommerce-Website` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `Ecommerce-Website`;
 
-CREATE TABLE `user` (
+CREATE TABLE `admin` (
   `id` int NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `user` VALUES
-(1, 'Lê Hân', '52200155@student.tdtu.edu.vn', 'lehan', '123456', 0);
+INSERT INTO `admin` VALUES
+(1, 'kiet', '52200140@student.tdtu.edu.vn', 'kietadmin', '123456');
 
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
+
+CREATE TABLE `users` (
+  `user_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `username` NVARCHAR(50) NOT NULL UNIQUE,
+  `email` NVARCHAR(100) NOT NULL UNIQUE,
+  `password` NVARCHAR(255) NOT NULL,
+  `city` NVARCHAR(255) DEFAULT NULL,
+  `province` NVARCHAR(255) DEFAULT NULL,
+  `ward` NVARCHAR(255) DEFAULT NULL,
+  `address` NVARCHAR(255) DEFAULT NULL,
+  `phone` VARCHAR(20) DEFAULT NULL,
+  `is_active` BOOLEAN DEFAULT TRUE,
+  `authority` INT DEFAULT 0,
+  `code` INT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE  `categories` (
+  `category_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `category_name` NVARCHAR(100) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS coupons (
+  `coupon_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `coupon_code` VARCHAR(20) NOT NULL UNIQUE,
+  `discount` DECIMAL(5, 2) NOT NULL,
+  `expiry` TIMESTAMP,
+  `flash_sale` INT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE  `product_colors` (
+  `color_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `color_name` VARCHAR(50) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE  `product_sizes`(
+  `size_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `size_name` VARCHAR(20) NOT NULL,
+  -- `standardized_size` VARCHAR(20),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE  `products` (
+  `product_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `category_id` INT UNSIGNED NOT NULL,
+  `price` DECIMAL(10, 2) NOT NULL,
+  `quantity` INT UNSIGNED DEFAULT 0,
+  `color_id` INT UNSIGNED,
+  `size_id` INT UNSIGNED,
+  `image` VARCHAR(255) NOT NULL,
+  `coupon_id` INT UNSIGNED, 
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`category_id`) REFERENCES categories(`category_id`),
+  FOREIGN KEY (`color_id`) REFERENCES product_colors(`color_id`),
+  FOREIGN KEY (`size_id`) REFERENCES product_sizes(`size_id`),
+  FOREIGN KEY (`coupon_id`) REFERENCES coupons(`coupon_id`)
+);
+
+
+CREATE TABLE  `product_images` (
+  `image_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  -- `is_main_image` BOOLEAN DEFAULT FALSE,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+);
+
+CREATE TABLE  `product_amount` (
+  `product_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `amount` INT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Products Table
+CREATE TABLE  `cart` (
+  `cart_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `product_id` INT UNSIGNED NOT NULL,
+  `quantity` INT UNSIGNED NOT NULL,
+  `date_added` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+);
+
+-- Orders Table
+CREATE TABLE  `orders` (
+  `order_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `cart_id` INT UNSIGNED,
+  `user_id` INT UNSIGNED NOT NULL,
+  `product_id` INT UNSIGNED NOT NULL,
+  `amount` INT UNSIGNED NOT NULL,
+  `total_amount` DECIMAL(10, 2) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `status` INT DEFAULT 0,
+  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`),
+  FOREIGN KEY (`cart_id`) REFERENCES cart(`cart_id`)
+);
+
+-- Order Details Table
+CREATE TABLE  `order_details`(
+  `order_detail_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `quantity` INT UNSIGNED NOT NULL,
+  `price` DECIMAL(10, 2) NOT NULL,
+  `total_amount` INT UNSIGNED NOT NULL,
+  `total_price` DECIMAL (10, 2) NOT NULL, 
+  `status` NVARCHAR(50) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`order_detail_id`) REFERENCES orders(`order_id`),
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+);
+
+INSERT INTO `categories` (`category_name`) VALUES 
+('T-Shirt'),
+('Shirt'),
+('Pants'),
+('Shoes');
+
+
+INSERT INTO `product_colors` (`color_name`) VALUES
+('Red'),
+('Blue'),
+('Green'),
+('Yellow'),
+('White'),
+('Black'),
+('Pink');
+
+INSERT INTO `product_sizes` (`size_name`) VALUES
+('S'),
+('M'),
+('L'),
+('XL'),
+('2XL'),
+('3XL');
+
+
+INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, `size_id`, `image`)  VALUES
+('T-Shirt Summer 1', '1', '40', '5', '1', '2', '../mvc/assets/img/products/f1.jpg'),
+('T-Shirt Summer 2', '1', '45', '10', '1', '1', '../mvc/assets/img/products/f2.jpg'),
+('T-Shirt Summer 3', '1', '50', '15', '1', '3', '../mvc/assets/img/products/f3.jpg'),
+('T-Shirt Spring', '1', '55', '10', '2', '3', '../mvc/assets/img/products/f4.jpg'),
+('T-Shirt Fall', '1', '40', '8', '1', '2', '../mvc/assets/img/products/f5.jpg'),
+('Shirt', '2', '30', '12', '1', '1', '../mvc/assets/img/products/f6.jpg'),
+('Summer Shorts', '3', '70', '20', '5', '5', '../mvc/assets/img/products/f7.jpg'),
+('Skirt', '3', '60', '20', '7', '3', '../mvc/assets/img/products/f8.jpg'),
+('Formal Shirt', '2', '50', '10', '2', '4', '../mvc/assets/img/products/n1.jpg'),
+('Grey Shirt', '2', '45', '15', '2', '3', '../mvc/assets/img/products/n2.jpg'),
+('White Shirt', '2', '120', '30', '5', '4', '../mvc/assets/img/products/n3.jpg'),
+('Tank Top', '2', '25', '25', '5', '3', '../mvc/assets/img/products/n4.jpg'),
+('Office Shirt', '2', '35', '30', '6', '3', '../mvc/assets/img/products/n5.jpg'),
+('Short for men', '3', '40', '20', '3', '4', '../mvc/assets/img/products/n6.jpg'),
+('Beige button-up shirt', '2', '20', '10', '1', '1', '../mvc/assets/img/products/n7.jpg'),
+('Black Shirt', '2', '25', '15', '6', '5', '../mvc/assets/img/products/n8.jpg'),
+('Hem Blouse', '3', '35', '30', '6', '3', '../mvc/assets/img/products/n9.jpg'),
+('Fashion Shirt', '2', '50', '45', '5', '3', '../mvc/assets/img/products/n10.jpg'),
+('Sport pants', '3', '25', '15', '6', '6', '../mvc/assets/img/products/n11.jpg'),
+('White Shirt Couple', '3', '130', '30', '5', '4', '../mvc/assets/img/products/n12.jpg'),
+('Maticevski', '3', '45', '65', '5', '4', '../mvc/assets/img/products/n13.jpg'),
+('Maticevski-Black', '3', '50', '75', '6', '3', '../mvc/assets/img/products/n14.jpg'),
+('Jean Cassual', '3', '70', '20', '2', '5', '../mvc/assets/img/products/n15.jpg'),
+('Fashion Jeans', '3', '75', '25', '2', '4', '../mvc/assets/img/products/n16.jpg'),
+('Maticevski Fashion for Women', '3', '80', '20', '5', '2', '../mvc/assets/img/products/n17.jpg'),
+('Fashion Jean Black', '3', '90', '30', '6', '6', '../mvc/assets/img/products/n18.jpg'),
+('Cargo', '3', '70', '15', '6', '5', '../mvc/assets/img/products/n19.jpg'),
+('Cargo 2', '3', '70', '20', '2', '4', '../mvc/assets/img/products/n20.jpg'),
+('Wide-leg Pants 1', '3', '65', '30', '2', '1', '../mvc/assets/img/products/n21.jpg'),
+('Wide-leg Pants 2', '3', '65', '35', '6', '2', '../mvc/assets/img/products/n22.jpg'),
+('Flare Pants', '3', '75', '30', '4', '3', '../mvc/assets/img/products/n23.jpg'),
+('Fashion Flare Pants', '3', '75', '30', '4', '3', '../mvc/assets/img/products/n24.jpg'),
+('Doll Shoes', '4', '95', '45', '6', '2', '../mvc/assets/img/products/n25.jpg'),
+('Boot', '4', '130', '10', '5', '5', '../mvc/assets/img/products/n26.jpg'),
+('Converse Shoes', '4', '100', '20', '5', '4', '../mvc/assets/img/products/n27.jpg'),
+('Dolce & Dabbana', '4', '120', '45', '6', '4', '../mvc/assets/img/products/n28.jpg'),
+('Dior', '4', '200', '50', '5', '5', '../mvc/assets/img/products/n29.jpg'),
+('Bottega Veneta For Men', '4', '80', '10', '5', '6', '../mvc/assets/img/products/n30.jpg'),
+('High Boots 1', '4', '75', '40', '6', '4', '../mvc/assets/img/products/n31.jpg'),
+('High Boots 2', '4', '75', '25', '4', '4', '../mvc/assets/img/products/n32.jpg'),
+('Mango Flatform Leather Sandals', '4', '40', '200', '6', '2', '../mvc/assets/img/products/n33.jpg'),
+('Flip-flops', '4', '30', '60', '5', '1', '../mvc/assets/img/products/n34.jpg'),
+('Nike Benassi', '4', '50', '55', '6', '3', '../mvc/assets/img/products/n35.jpg'),
+('Crocs', '4', '20', '30', '5', '3', '../mvc/assets/img/products/n36.jpg'),
+('Flip-flops Summer', '4', '25', '40', '7', '2', '../mvc/assets/img/products/n37.jpg'),
+('Havaianas Basic', '4', '15', '100', '5', '4', '../mvc/assets/img/products/n38.jpg'), 
+('Martin Boots', '4', '55', '30', '5', '4', '../mvc/assets/img/products/n39.jpg'),
+('Sport Adidas', '4', '60', '120', '6', '3', '../mvc/assets/img/products/n40.jpg');
+
+INSERT INTO `users` (`username`, `email`, `password`, `is_active`, `authority`)
+VALUES ('kiet', '52200140@example.com', 'kiet123', TRUE, 0),
+       ('han', '52200155@example.com', 'han123', TRUE, 0);
+-- ('1', 'T-Shirt Summer 1', '1', '40', '5', '1', '2', '../mvc/assets/img/products/f1.jpg'),
+-- ('2', 'T-Shirt Summer 2', '1', '45', '10', '1', '1', '../mvc/assets/img/products/f2.jpg'),
+-- ('3', 'T-Shirt Summer 3', '1', '50', '15', '1', '3', '../mvc/assets/img/products/f3.jpg'),
+-- ('4', 'T-Shirt Spring', '1', '55', '10', '2', '3', '../mvc/assets/img/products/f4.jpg'),
+-- ('5', 'T-Shirt Fall', '1', '40', '8', '1', '2', '../mvc/assets/img/products/f5.jpg'),
+-- ('6', 'Shirt', '2', '30', '12', '1', '1', '../mvc/assets/img/products/f6.jpg'),
+-- ('7', 'Summer Shorts', '3', '70', '20', '5', '5', '../mvc/assets/img/products/f7.jpg'),
+-- ('8', 'Skirt', '3', '60', '20', '7', '3', '../mvc/assets/img/products/f8.jpg'),
+-- ('9', 'Formal Shirt', '2', '50', '10', '2', '4', '../mvc/assets/img/products/n1.jpg'),
+-- ('10', 'Grey Shirt', '2', '45', '15', '2', '3', '../mvc/assets/img/products/n2.jpg'),
+-- ('11', 'White Shirt', '2', '120', '30', '5', '4', '../mvc/assets/img/products/n3.jpg'),
+-- ('12', 'Tank Top', '2', '25', '25', '5', '3', '../mvc/assets/img/products/n4.jpg'),
+-- ('13', 'Office Shirt', '2', '35', '30', '6', '3', '../mvc/assets/img/products/n5.jpg'),
+-- ('14', 'Short for men', '3', '40', '20', '3', '4', '../mvc/assets/img/products/n6.jpg'),
+-- ('15', 'Beige button-up shirt', '2', '20', '10', '1', '1', '../mvc/assets/img/products/n7.jpg'),
+-- ('16', 'Black Shirt', '2', '25', '15', '6', '5', '../mvc/assets/img/products/n8.jpg'),
+-- ('17', 'Hem Blouse', '3', '35', '30', '6', '3', '../mvc/assets/img/products/n9.jpg'),
+-- ('18', 'Fashion Shirt', '2', '50', '45', '5', '3', '../mvc/assets/img/products/n10.jpg'),
+-- ('19', 'Sport pants', '3', '25', '15', '6', '6', '../mvc/assets/img/products/n11.jpg'),
+-- ('20', 'White Shirt Couple', '3', '130', '30', '5', '4', '../mvc/assets/img/products/n12.jpg'),
+-- ('21', 'Maticevski', '3', '45', '65', '5', '4', '../mvc/assets/img/products/n13.jpg'),
+-- ('22', 'Maticevski-Black', '3', '50', '75', '6', '3', '../mvc/assets/img/products/n14.jpg'),
+-- ('23', 'Jean Cassual', '3', '70', '20', '2', '5', '../mvc/assets/img/products/n15.jpg'),
+-- ('24', 'Fashion Jeans', '3', '75', '25', '2', '4', '../mvc/assets/img/products/n16.jpg'),
+-- ('25', 'Maticevski Fashion for Women', '3', '80', '20', '5', '2', '../mvc/assets/img/products/n17.jpg'),
+-- ('26', 'Fashion Jean Black', '3', '90', '30', '6', '6', '../mvc/assets/img/products/n18.jpg'),
+-- ('27', 'Cargo', '3', '70', '15', '6', '5', '../mvc/assets/img/products/n19.jpg'),
+-- ('28', 'Cargo 2', '3', '70', '20', '2', '4', '../mvc/assets/img/products/n20.jpg'),
+-- ('29', 'Wide-leg Pants 1', '3', '65', '30', '2', '1', '../mvc/assets/img/products/n21.jpg'),
+-- ('30', 'Wide-leg Pants 2', '3', '65', '35', '6', '2', '../mvc/assets/img/products/n22.jpg'),
+-- ('31', 'Flare Pants', '3', '75', '30', '4', '3', '../mvc/assets/img/products/n23.jpg'),
+-- ('32', 'Fashion Flare Pants', '3', '75', '30', '4', '3', '../mvc/assets/img/products/n24.jpg'),
+-- ('33', 'Doll Shoes', '4', '95', '45', '6', '2', '../mvc/assets/img/products/n25.jpg'),
+-- ('34', 'Boot', '4', '130', '10', '5', '5', '../mvc/assets/img/products/n26.jpg'),
+-- ('35', 'Converse Shoes', '4', '100', '20', '5', '4', '../mvc/assets/img/products/n27.jpg'),
+-- ('36', 'Dolce & Dabbana', '4', '120', '45', '6', '4', '../mvc/assets/img/products/n28.jpg'),
+-- ('37', 'Dior', '4', '200', '50', '5', '5', '../mvc/assets/img/products/n29.jpg'),
+-- ('38', 'Bottega Veneta For Men', '4', '80', '10', '5', '6', '../mvc/assets/img/products/n30.jpg'),
+-- ('39', 'High Boots 1', '4', '75', '40', '6', '4', '../mvc/assets/img/products/n31.jpg'),
+-- ('40', 'High Boots 2', '4', '75', '25', '4', '4', '../mvc/assets/img/products/n32.jpg'),
+-- ('41', 'Mango Flatform Leather Sandals', '4', '40', '200', '6', '2', '../mvc/assets/img/products/n33.jpg'),
+-- ('42', 'Flip-flops', '4', '30', '60', '5', '1', '../mvc/assets/img/products/n34.jpg'),
+-- ('43', 'Nike Benassi', '4', '50', '55', '6', '3', '../mvc/assets/img/products/n35.jpg'),
+-- ('44', 'Crocs', '4', '20', '30', '5', '3', '../mvc/assets/img/products/n36.jpg'),
+-- ('45', 'Flip-flops Summer', '4', '25', '40', '7', '2', '../mvc/assets/img/products/n37.jpg'),
+-- ('46', 'Havaianas Basic', '4', '15', '100', '5', '4', '../mvc/assets/img/products/n38.jpg'),
+-- ('47', 'Martin Boots', '4', '55', '30', '5', '4', '../mvc/assets/img/products/n39.jpg'),
+-- ('48', 'Sport Adidas', '4', '60', '120', '6', '3', '../mvc/assets/img/products/n40.jpg')
+

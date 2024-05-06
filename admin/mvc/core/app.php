@@ -7,9 +7,8 @@ class app {
     protected $params=[];
 
     function __construct() {
-        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'home.php';
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'dashboard.php';
         $arr = $this->url_process();
-        
         if (is_array($arr) && count($arr) > 0) {
             $controllerPath = "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $arr[0] . ".php";
             if(file_exists($controllerPath)){
@@ -25,10 +24,10 @@ class app {
                 unset($arr[1]);
             }
         }
-      
         
         $this->params = $arr?array_values($arr):[];
-        if($this->params != null && $this->params[0] == "fail"){
+
+        if(count($this->params) != 0 && $this->params[0] == "fail"){
             $this->params = ["Login Fail"];
         }
 
@@ -36,8 +35,9 @@ class app {
             call_user_func_array(["login", "login"], $this->params);
         }
         else {
-            call_user_func_array(["home", "index"], $this->params);
+            call_user_func_array(["dashboard", "index"], $this->params);
         }
+
     }
 
     function url_process(){

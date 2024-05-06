@@ -48,7 +48,8 @@
 
         </form>
         <?php
-            if ($data != null) {
+
+            if (count($data) != 0) {
                 echo "<p class='text-danger'>$data[0]</p>";
             }
         ?>

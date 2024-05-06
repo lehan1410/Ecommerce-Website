@@ -39,12 +39,12 @@
         <div class="main">
 
             <?php include('./mvc/views/layouts/header.php'); ?>
-            <div id="content">
+            <div class="content">
                 <?php
                     $app = new app();
                     $a = $app->getAction();
                     if($a == "index"){
-                        include('dashboard.html');
+                        include('dashboard.php');
                     }else{
                         call_user_func_array([$app->getController(), $a], $app->getParams());
                     }

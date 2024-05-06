@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Forgot</title>
-    <link rel="stylesheet" href="../assets/css/forgot-pass.css">
+    <link rel="stylesheet" href="../mvc/assets/css/forgot-pass.css">
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="form-container">
-            <form action="" method="post">
+            <form action="http://localhost:8080/Ecommerce-Website/client/forgotpassword/send" method="post">
                 <h1>Forgot Password</h1>
                 <h2>Mail Address More</h2>
                 <p>
@@ -25,11 +25,12 @@
                     echo "<p style='color: red; padding-bottom: 10px;'>".$txt_error."</p>";
                 }
                 ?> -->
-                <input type="submit" name="send" value="Recover Password" style="background:#512da8;color:#fff">
+                <input class="send" type="submit" name="send" value="Recover Password" style="background:#512da8;color:#fff" >
             </form>
         </div>
     </div>
 
 </body>
+
 
 </html>

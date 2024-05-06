@@ -28,7 +28,7 @@
                     $a = $app->getAction();
 
                     if($a == "index"){
-                        include('index.html');
+                        include('./mvc/views/pages/home/index.php');
                     }else{
                         call_user_func_array([$app->getController(), $a], $app->getParams());
                     }

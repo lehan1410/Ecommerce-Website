@@ -3,19 +3,20 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Login</title>
+	<title>Tech2etc Ecommerce Tutorial</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-	<link href="./mvc/assets/css/login.css" rel="stylesheet" type="text/css">
+	<base href="http://localhost:8080/Ecommerce-Website/client/mvc/assets">
+	<link href="../mvc/assets/css/login.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 	<div class="login">
 		<h1>Login</h1>
-		<form action="login/loginAction" method="post">
+		<form action="http://localhost:8080/Ecommerce-Website/client/login/loginAction" method="post">
 			<label for="username">
 				<i class="fas fa-user"></i>
 			</label>
-			<input type="text" name="username" placeholder="Username" id="username" required>
+			<input type="text" name="email" placeholder="Email" id="email" required>
 			<label for="password">
 				<i class="fas fa-lock"></i>
 			</label>
@@ -29,7 +30,7 @@
 				</div>
 				<div class="forgot">
 					<p class="forgotPwd">
-						<a class="lnk-toggler" href="forgotpassword.html">Forgot password?</a>
+						<a class="lnk-toggler" href="http://localhost:8080/Ecommerce-Website/client/forgotpassword/forgotpassword">Forgot password?</a>
 					</p>
 				</div>
 			</div>
@@ -37,7 +38,15 @@
 			<div id="register">
 				<span>Do you haven't account?</span> <a href="http://localhost:8080/Ecommerce-Website/client/registration/registration">Đăng ký</a>
 			</div>
+			
 		</form>
+		<?php
+			if (count($data) != 0) {
+				echo "<p class='text-danger'>$data[0]</p>";
+			}
+		?>
+		
+
 	</div>
 </body>
 

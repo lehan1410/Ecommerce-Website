@@ -3,7 +3,8 @@
         public function login($email, $password){
             $a = new Database();
             $a->connect();
-            $sql = "SELECT * FROM user where email = '$email' and password = '$password'";
+            $sql = "SELECT * FROM users where email = '$email' and password = '$password'";
             return mysqli_query($a->conn, $sql);
         }
     }
+?>

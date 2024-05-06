@@ -11,7 +11,7 @@
 <body>
     <div class="wrapper">
         <h2>Registration</h2>
-        <form action="" method="post">
+        <form action="http://localhost:8080/Ecommerce-Website/client/registration/registerAction" method="post">
             <div class="input-box">
                 <input type="text" placeholder="Enter your Name" required name="name">
             </div>
@@ -19,20 +19,17 @@
                 <input type="email" placeholder="Enter your Email" required name="email">
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Create Password" required name="pass1">
+                <input type="text" placeholder="Create Password" required name="pass">
             </div>
-            <div class="input-box">
-                <input type="text" placeholder="Confirm Password" required name="pass2">
-            </div>
-            <div class="policy">
+            <!-- <div class="policy">
                 <input type="checkbox">
                 <h3>I accept terms & conditions</h3>
-            </div>
+            </div> -->
             <div class="input-box button">
                 <input type="submit" value="Register Now" name="sign">
             </div>
             <div class="text">
-                <h3>Already have an account? <a href="login.php">Login Here</a></h3>
+                <h3>Already have an account? <a href="http://localhost:8080/Ecommerce-Website/client/login">Login Here</a></h3>
             </div>
         </form>
     </div>

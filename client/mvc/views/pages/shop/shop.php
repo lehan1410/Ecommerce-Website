@@ -26,7 +26,6 @@
         <div class="pro-container">
             <div class="pro" onclick="window.location.href='sproduct.html';">
                 <img src="../mvc/assets/img/products/f1.jpg" alt="img">
-                D:\xampp\htdocs\Ecommerce-Website\client\mvc\assets\img\products\f1.jpg
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoons Astronaut T-Shirts</h5>
