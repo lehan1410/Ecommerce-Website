@@ -122,6 +122,7 @@ body {
   /* Đảm bảo hình ảnh không bị kéo dài */
 }
 
+
 #navbar li a:hover,
 #navbar li a.active {
   color: #088178;

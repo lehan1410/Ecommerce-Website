@@ -7,7 +7,8 @@ class app {
 
     function __construct() {
         $arr = $this->url_process();
-
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."login.php";
+        require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."home.php";
         if (is_array($arr) && count($arr) > 0) {
             $controllerPath = "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $arr[0] . ".php";
         
@@ -25,9 +26,44 @@ class app {
             }
         }
 
+        if($this->controller == "login" && $this->action == "index"){
+            $this->action = "login";
+        }
+
         $this->params = $arr?array_values($arr):[];
+
+        // echo $this->params != null;
+        // if($this->params != null){
+        //     call_user_func_array(["login", "login"], $this->params);
+        // }
+        if(count($this->params) != 0 && $this->params[0] == "failed"){
+            $this->params = ["Login Fail"];
+        }
+
+        if($this->action == "login"){
+            call_user_func_array(["login", "login"], $this->params);
+        }
+        elseif($this->action == "registration"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."registration.php";
+            call_user_func_array(["registration", "registration"], $this->params);
+        }
+        elseif($this->action == "forgotpassword"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."forgotpassword.php";
+            call_user_func_array(["forgotpassword", "forgotpassword"], $this->params);
+        }
+        elseif($this->action == "resetcode"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."resetcode.php";
+            call_user_func_array(["resetcode", "resetcode"], $this->params);
+        }
+        elseif($this->action == "changepass"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."changepass.php";
+            call_user_func_array(["changepass", "changepass"], $this->params);
+        }
+        else {
+            call_user_func_array(["home", "index"], $this->params);
+        }
         
-        call_user_func_array([$this->controller, $this->action], $this->params);
+        // call_user_func_array([$this->controller, $this->action], $this->params);
  
     }
 
