@@ -9,7 +9,6 @@ class app {
     function __construct() {
         require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . 'dashboard.php';
         $arr = $this->url_process();
-        
         if (is_array($arr) && count($arr) > 0) {
             $controllerPath = "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $arr[0] . ".php";
             if(file_exists($controllerPath)){
@@ -25,7 +24,6 @@ class app {
                 unset($arr[1]);
             }
         }
-      
         
         $this->params = $arr?array_values($arr):[];
 

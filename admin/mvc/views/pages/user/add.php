@@ -16,28 +16,26 @@
 
             <div class="col-9">
                 <div class="p-5 shadow-sm border">
-                    <form ng-submit="addUser()" class="row">
+                    <form class="row">
                         <div class="col-12 col-md-6 mb-4">
                             <label for="name" class="form-label">Họ Và Tên <span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control" ng-model="name">
+                            <input type="text" name="name" id="name" class="form-control">
                         </div>
 
                         <div class="col-12 col-md-6 mb-4">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" name="email" id="email" class="form-control" ng-model="email">
+                            <input type="email" name="email" id="email" class="form-control">
                         </div>
 
                         <div class="col-12 col-md-6 mb-4">
                             <label for="password" class="form-label">Mật Khẩu <span class="text-danger">*</span></label>
-                            <input type="password" name="password" id="password" class="form-control"
-                                ng-model="password">
+                            <input type="password" name="password" id="password" class="form-control">
                         </div>
 
                         <div class="col-12 col-md-6 mb-4">
                             <label for="confirmPassword" class="form-label">Nhập Lại Mật Khẩu <span
                                     class="text-danger">*</span></label>
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
-                                ng-model="confirmPassword">
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
                         </div>
 
                         <div class="col-12 col-md-6 mb-4">
@@ -49,45 +47,40 @@
 
                         <div class="col-12 col-md-4 mb-4">
                             <label class="form-label">Chọn tỉnh / thành phố</label>
-                            <select ng-model="selectedProvince" ng-options="province.Name for province in locations"
-                                class="form-control">
+                            <select class="form-control">
                                 <option value="">Chọn một tỉnh/thành phố</option>
                             </select>
                         </div>
 
                         <div class="col-12 col-md-4 mb-4">
                             <label for="district" class="form-label">Quận/Huyện</label>
-                            <select ng-model="selectedDistrict"
-                                ng-options="district.Name for district in selectedProvince.Districts"
-                                class="form-control">
+                            <select class="form-control">
                                 <option value="">Chọn một quận/huyện</option>
                             </select>
                         </div>
 
                         <div class="col-12 col-md-4 mb-4">
                             <label for="ward" class="form-label">Phường/Xã</label>
-                            <select ng-model="selectedWard" ng-options="ward.Name for ward in selectedDistrict.Wards"
-                                class="form-control">
+                            <select class="form-control">
                                 <option value="">Chọn một phường/xã</option>
                             </select>
                         </div>
 
                         <div class="col-12 mb-4">
                             <label for="addressDetail" class="form-label">Nhập địa chỉ cụ thể</label>
-                            <input type="text" name="addressDetail" id="addressDetail" class="form-control"
-                                ng-model="addressDetail">
+                            <input type="text" name="addressDetail" id="addressDetail" class="form-control">
                         </div>
 
                         <div class="col-12 mb-4">
                             <label for="role" class="form-label">Uỷ Quyền</label>
                             <select name="role" id="role" class="form-select" ng-model="role" ng-init="role='user'">
-                                <option value="user">Tài Khoản Khách Hàng</option>
-                                <option value="admin">Quản Trị Viên</option>
+                                <option value="0">Tài Khoản Khách Hàng</option>
+                                <option value="1">Quản Trị Viên</option>
                             </select>
                         </div>
 
                         <div class="col-12 mb-4">
-                            <button type="submit" class="btn btn-danger">Thêm Người Dùng</button>
+                            <a class="btn btn-danger" id="add">Thêm Người Dùng</a>
                         </div>
                     </form>
                 </div>
@@ -95,3 +88,40 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#add').on('click', function() {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var mobile = $('#mobile').val();
+            var role = $('#role').val();
+
+            var data = {
+                name: name,
+                email: email,
+                password: password,
+                mobile: mobile,
+                role: role
+            };
+
+            var jsonString = JSON.stringify(data);
+            var encodedJson = encodeURIComponent(jsonString);
+
+            console.log(encodedJson);
+            $.ajax({
+                url: 'http://localhost:8080/Ecommerce-Website/admin/user/addUser/' + encodedJson,
+                type: 'GET',
+                success: function(queryString) {
+                    console.log('AJAX request succeeded');
+                    console.log(url);
+
+                }
+            });
+            
+        });
+    });
+</script>

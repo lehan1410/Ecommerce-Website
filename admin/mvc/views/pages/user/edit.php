@@ -62,26 +62,65 @@
                         <div class="col-12 mb-4">
                             <label for="addressDetail" class="form-label">Nhập địa chỉ cụ thể</label>
                             <input type="text" name="addressDetail" id="addressDetail" class="form-control"
-                                ng-model="userRes.addressDetail">
+                            value="<?php echo $data['address']; ?>">
                         </div>
 
                         <div class="col-12 mb-4">
                             <label for="role" class="form-label">Uỷ Quyền</label>
                             <select name="role" id="role" class="form-select" ng-model="userRes.role">
-                                <option value="user">Tài Khoản Khách Hàng</option>
-                                <option value="admin">Quản Trị Viên</option>
+                                <option value="0">Tài Khoản Khách Hàng</option>
+                                <option value="1">Quản Trị Viên</option>
                             </select>
                         </div>
-
-
                         <div class="col-12 mb-4">
-                            <button type="submit" class="btn btn-danger">Lưu Thay Đổi</button>
+                            <a class="btn btn-danger" id="saveChanges">
+                                Lưu Thay Đổi
+                            </a>
 
-                            <a href="#!/user" class="btn btn-secondary">Hủy</a>
+                            <a href="http://localhost:8080/Ecommerce-Website/admin/user/user" class="btn btn-secondary">Hủy</a>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var pathArray = window.location.pathname.split('/');
+        var userId = pathArray[pathArray.length - 1];
+        $('#saveChanges').on('click', function() {
+        
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var mobile = $('#mobile').val();
+            var role = $('#role').val();
+
+            var data = {
+                id: userId,
+                name: name,
+                email: email,
+                mobile: mobile,
+                role: role
+            };
+
+            var jsonString = JSON.stringify(data);
+            var encodedJson = encodeURIComponent(jsonString);
+
+            console.log(encodedJson);
+            $.ajax({
+                url: 'http://localhost:8080/Ecommerce-Website/admin/user/update/' + encodedJson,
+                type: 'GET',
+                success: function(queryString) {
+                    console.log('AJAX request succeeded');
+                    console.log(url);
+
+                }
+            });
+            
+        });
+    });
+</script>
