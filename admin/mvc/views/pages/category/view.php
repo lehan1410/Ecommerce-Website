@@ -5,25 +5,23 @@
 
     <div class="px-5">
 
+
         <table class="table table-striped mt-5">
             <thead>
                 <th>STT</th>
-                <th>Tên Danh Mục</th>
-                <th>Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng</th>
                 <th>Thao Tác</th>
             </thead>
 
             <tbody>
-                <?php foreach($data as $index => $category): ?>
+                <?php foreach($data as $index => $product): ?>
                     <tr>
                         <td><?php echo $index + 1; ?></td>
-                        <td><?php echo $category['category_name']; ?></td>
-                        <td><?php echo $category['sum'] ?? 0; ?></td>
+                        <td><?php echo $product['name']; ?></td>
+                        <td><?php echo $product['quantity']; ?></td>
                         <td>
-                        <a class="btn btn-primary" href="http://localhost:8080/Ecommerce-Website/admin/category/viewDetail/<?php echo $category['category_id']; ?>">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                        <button class="remove btn btn-danger" data-category-id="<?php echo $category['category_id']; ?>">
+                        <button class="remove btn btn-danger" data-product-id="<?php echo $product['product_id']; ?>">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
@@ -38,10 +36,9 @@
 <script>
 $(document).ready(function() {
     $('.remove').click(function(event) {
-        var categoryId = $(this).data('category-id');
-        console.log(categoryId);
+        var productId = $(this).data('product-id');
         $.ajax({
-            url: 'http://localhost:8080/Ecommerce-Website/admin/category/removeCate/' + categoryId,
+            url: 'http://localhost:8080/Ecommerce-Website/admin/category/remove/' + productId,
             type: 'GET',
             success: function(data) {
                 console.log('AJAX request succeeded');
