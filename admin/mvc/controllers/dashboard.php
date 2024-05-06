@@ -1,18 +1,24 @@
 <?php
+require_once "./mvc/models/dashboardModel.php";
 class dashboard extends controller{
+    
+    protected $data;
+
+    function __construct(){
+        $this->data = new dasboardModels();
+    }
 
     static public function index(){
-        $product = self::product();
+        $instance = new self();
+        $product = $instance->product();
         $data = [
             "product" => $product
         ];
         self::view('index',$data);
     }
 
-    static public function product(){
-        require_once "./mvc/models/dashboardModel.php";
-        $a = new dasboardModels();
-        $result = $a->product();
+    public function product(){
+        $result = $this->data->product();
         $row = mysqli_fetch_array($result);
         return $row[0];
     }

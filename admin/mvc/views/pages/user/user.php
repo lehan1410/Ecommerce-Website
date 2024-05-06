@@ -10,7 +10,7 @@
                 <i class="fas fa-plus"></i>
             </a>
         </div>
-
+        
         <table class="table table-striped mt-5">
             <thead>
                 <th>STT</th>
@@ -22,39 +22,53 @@
                 <th>Thao Tác</th>
             </thead>
             <tbody>
-                <tr ng-repeat="user in displayedUsers">
-                    <td>{{$index + 1}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.createdAt | date : 'dd-MM-yyyy'}}</td>
-                    <td>
-                        <input type="checkbox" ui-switchery ng-model="user.isBlocked" ng-change="changeStatus(user)" />
-                    </td>
-                    <td>
-                        <span ng-if="user.role === 'admin'">Quản Trị Viên</span>
-                        <span ng-if="user.role === 'user'">Khách Hàng</span>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="edit">
+                <?php foreach($data as $index => $user): ?>
+                    <tr>
+                        <td><?php echo $index + 1; ?></td>
+                        <td><?php echo $user['username']; ?></td>
+                        <td><?php echo $user['email']; ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($user['created_at'])); ?></td>
+                        <td>
+                            <input type="checkbox" <?php echo $user['is_active'] ? '' : 'checked'; ?> />
+                        </td>
+                        <td>
+                            <?php echo $user['authority'] === 0 ? 'Quản Trị Viên' : 'Khách Hàng'; ?>
+                        </td>
+                        <td>
+                        <a class="editUserButton btn btn-primary" href="http://localhost:8080/Ecommerce-Website/admin/user/edit/<?php echo $user['user_id']; ?>">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <button class="btn btn-danger" ng-click="deleteUser(user)">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
+
+                            <button id="removeUserButton" class="removeUserButton btn btn-danger" data-user-id="<?php echo $user['user_id']; ?>">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        
+
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
-
-        <div class="w-100 d-flex align-items-center justify-content-center mt-3">
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-danger">
-
-                    <li ng-repeat="page in pages" class="page-item" ng-class="{active: page === currentPage}">
-                        <a href="" class="page-link" ng-click="setCurrentPage(page)">{{ page }}</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.removeUserButton').click(function(event) {
+        var userId = $(this).data('user-id');
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/admin/user/remove/' + userId,
+            type: 'GET',
+            success: function(data) {
+                console.log('AJAX request succeeded');
+                location.reload();
+            },
+            error: function(error) {
+                console.log('AJAX request failed');
+            }
+        });
+    });
+});
+</script>
+
+                        

@@ -20,11 +20,11 @@ CREATE TABLE `users` (
   `username` NVARCHAR(50) NOT NULL UNIQUE,
   `email` NVARCHAR(100) NOT NULL UNIQUE,
   `password` NVARCHAR(255) NOT NULL,
-  `city` NVARCHAR(255),
-  `province` NVARCHAR(255),
-  `ward` NVARCHAR(255),
-  `address` NVARCHAR(255),
-  `phone` VARCHAR(20),
+  `city` NVARCHAR(255) DEFAULT NULL,
+  `province` NVARCHAR(255) DEFAULT NULL,
+  `ward` NVARCHAR(255) DEFAULT NULL,
+  `address` NVARCHAR(255) DEFAULT NULL,
+  `phone` VARCHAR(20) DEFAULT NULL,
   `is_active` BOOLEAN DEFAULT TRUE,
   `authority` INT DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -165,8 +165,6 @@ INSERT INTO `product_sizes` (`size_name`) VALUES
 ('2XL'),
 ('3XL');
 
--- INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, `size_id`, `image`) 
--- VALUES ('Product Name', 1, 99.99, 10, 1, 1, 'image.jpg');
 
 INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, `size_id`, `image`)  VALUES
 ('T-Shirt Summer 1', '1', '40', '5', '1', '2', 'img/products/f1.jpg'),
@@ -218,6 +216,9 @@ INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, 
 ('Martin Boots', '4', '55', '30', '5', '4', 'img/products/n39.jpg'),
 ('Sport Adidas', '4', '60', '120', '6', '3', 'img/products/n40.jpg');
 
+INSERT INTO `users` (`username`, `email`, `password`, `is_active`, `authority`)
+VALUES ('kiet', '52200140@example.com', 'kiet123', TRUE, 0),
+       ('han', '52200155@example.com', 'han123', TRUE, 0);
 -- ('1', 'T-Shirt Summer 1', '1', '40', '5', '1', '2', 'img/products/f1.jpg'),
 -- ('2', 'T-Shirt Summer 2', '1', '45', '10', '1', '1', 'img/products/f2.jpg'),
 -- ('3', 'T-Shirt Summer 3', '1', '50', '15', '1', '3', 'img/products/f3.jpg'),
