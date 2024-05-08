@@ -10,6 +10,10 @@
 </head>
 
 <body>
+	<?php
+	// include '../views/socialLogin/facebook_source.php';
+	// // include './google_source.php';
+	?>
 	<div class="login">
 		<h1>Login</h1>
 		<form action="http://localhost:8080/Ecommerce-Website/client/login/loginAction" method="post">
@@ -38,8 +42,9 @@
 			<div id="register">
 				<span>Do you haven't account?</span> <a href="http://localhost:8080/Ecommerce-Website/client/registration/registration">Đăng ký</a>
 			</div>
-			
+
 		</form>
+		
 		<?php
 			if (count($data) != 0) {
 				echo "<p class='text-danger'>$data[0]</p>";
