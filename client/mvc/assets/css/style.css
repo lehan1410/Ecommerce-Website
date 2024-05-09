@@ -308,7 +308,7 @@ body {
   --handle-hover: #{mix(white, #275efe, 90%)};
   --handle-border: 2px solid var(--primary);
   --line: #cdd9ed;
-  --line-active: var(--primary);
+  /* --line-active: var(--primary); */
   height: 23px;
   width: 100%;
   position: relative;
@@ -319,9 +319,10 @@ body {
       cursor: grab;
       -webkit-tap-highlight-color: transparent;
       top: 0;
+      left: 0;
       width: 23px;
       height: 23px;
-      transform: translateX(-50%);
+      /* transform: translateX(-50%); */
       position: absolute;
       outline: none;
       display: block;
@@ -331,7 +332,7 @@ body {
           height: 23px;
           border-radius: 50%;
           transition: background .4s ease;
-          transform: translateY(calc(var(--y) * 1px));
+          /* transform: translateY(calc(var(--y) * 1px)); */
           border: var(--handle-border);
           background: var(--background);
       }
@@ -339,7 +340,7 @@ body {
           --background: var(--handle-hover);
       }
       &:active {
-          --background: var(--handle-active);
+          /* --background: var(--handle-active); */
           cursor: grabbing;
       }
   }
@@ -347,6 +348,8 @@ body {
       --stroke: var(--line);
       display: block;
       height: 83px;
+      position: absolute;
+      top: 0;
       path {
           fill: none;
           stroke: var(--stroke);
@@ -366,15 +369,15 @@ body {
   .active {
       position: absolute;
       overflow: hidden;
-      left: calc(var(--l) * 1px);
-      right: calc(var(--r) * 1px);
+      /* left: calc(var(--l) * 1px); */
+      /* right: calc(var(--r) * 1px); */
       svg {
           --stroke: var(--line-active);
-          position: relative;
-          left: calc(var(--l) * -1px);
-          right: calc(var(--r) * -1px);
+          position: absolute;
+          /* left: calc(var(--l) * -1px); */
+          /* right: calc(var(--r) * -1px); */
           path {
-              stroke-width: 2;
+              stroke-width: 1;
           }
       }
   }
@@ -412,8 +415,8 @@ body {
       }
   }
 }
-.shop .catogory {
-  padding-top: 20px;
+.shop .filter .catogory {
+  padding-top: 100px;
 }
 
 .section-p1 {

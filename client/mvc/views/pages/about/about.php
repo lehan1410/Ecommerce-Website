@@ -1,31 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech2etc Ecommerce Tutorial</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"> -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<section id="page-header" class="about-header">
 
-<body> 
-    <section id="page-header" class="about-header">
+    <h2>#KnowUs</h2>
+    <p>Lorem ipsum dolor sit amet consectetur </p>
 
-        <h2>#KnowUs</h2>
-        <p>Lorem ipsum dolor sit amet consectetur </p>
+</section>
 
-    </section>
+<body>
     <section id="about-head" class="section-p1">
         <img src="../mvc/assets/img/about/a6.jpg" alt="">
         <div>
             <h2>Who We Are?</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi sint quibusdam iure pariatur dicta obcaecati cumque commodi fuga aspernatur ex eligendi, maiores, odit et omnis quaerat in atque recusandae animi!</p>
-            <abbr title="">Create stunning images with as much or as little control as you like thanks to a choice of Basic and Create modes</abbr>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi sint quibusdam iure pariatur dicta
+                obcaecati cumque commodi fuga aspernatur ex eligendi, maiores, odit et omnis quaerat in atque recusandae
+                animi!</p>
+            <abbr title="">Create stunning images with as much or as little control as you like thanks to a choice of
+                Basic and Create modes</abbr>
             <br>
-            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">Create stunning images with as much or as little control as you like thanks to a choice of Basic and Creative modes</marquee>
+            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">Create stunning images with as much or as
+                little control as you like thanks to a choice of Basic and Creative modes</marquee>
         </div>
     </section>
 
@@ -37,7 +32,7 @@
 
     </section>
 
-    
+
     <section id="feature" class="section-p1">
         <div class="fe-box">
             <img src="../mvc/assets/img/features/f1.png" alt="img">

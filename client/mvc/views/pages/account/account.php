@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="../mvc/assets/css/style_temp.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <link rel="stylesheet" href="../mvc/assets/css/style_temp.css">
-</head>
 
 <body>
     <div class="container">
@@ -15,9 +8,9 @@
             <h4>Thông tin cá nhân</h4>
             <img src="../mvc/assets/img/about/avatar.jpg" alt="">
             <form action="./upload.php" method="post" enctype="multipart/form-data">
-                Chọn file để upload:
-                <input type="file" name="fileupload" id="fileupload">
-                <input type="submit" value="Đăng ảnh" name="submit">
+                <label for="file"> Pick a file : </label>
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
             </form>
         </div>
         <div class="right-content form">
@@ -42,7 +35,38 @@
             <button class="normal save">Lưu thay đổi</button>
         </div>
     </div>
-
 </body>
+<script>
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function() {
+        document.getElementById('preview').style.backgroundImage = 'url(' + reader.result + ')';
+
+        var formData = new FormData();
+        formData.append('image', file);
+
+        fetch('upload.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.style.backgroundImage = "";
+    }
+});
+</script>
 
 </html>

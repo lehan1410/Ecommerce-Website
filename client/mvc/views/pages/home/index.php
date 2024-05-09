@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech2etc Ecommerce Tutorial</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <link rel="stylesheet" href="../mvc/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../mvc/assets/css/style.css">
-    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"> -->
-    <base href="http://localhost:8080/Ecommerce-Website/client/mvc/assets">
-
-
-</head>
+<link rel="stylesheet" href="../mvc/assets/css/style.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
 <body>
-    
-    
     <section id="hero">
         <h4>Trade-in-offer</h4>
         <h2>Super value deals</h2>
@@ -57,22 +42,22 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
             <?php foreach($data as $index => $product): ?>
-                <div class="pro">
-                    <img src="<?php echo $product['image']; ?>" alt="Product Image">
-                    <div class="des">
-                        <span>adidas</span>
-                        <h5><?php echo $product['name']; ?></h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4><?php echo "$" . $product['price']; ?></h4>
+            <div class="pro">
+                <img src="<?php echo $product['image']; ?>" alt="Product Image">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5><?php echo $product['name']; ?></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                    <h4><?php echo "$" . $product['price']; ?></h4>
                 </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
             <?php endforeach; ?>
         </div>
     </section>
@@ -97,7 +82,7 @@
             <span>The best classic dress is on sale at cara</span>
             <button class="white">Collection</button>
         </div>
-        
+
     </section>
 
     <section id="banner3">
@@ -115,7 +100,7 @@
         </div>
     </section>
 
-    
+
 
     <script src="./js/script.js"></script>
 

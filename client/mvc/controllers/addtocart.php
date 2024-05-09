@@ -1,11 +1,13 @@
 <?php
-    require_once '../models/addtocartModels.php';
+require_once '../models/cartModels.php';
 
-    if(isset($_POST['product_id'])) {
-        $product_id = $_POST['product_id'];
-        $addtocart = new AddToCart();
-        $addtocart->addToCart($product_id);
+$productId = isset($_GET['product_id']) ? $_GET['product_id'] : null;
+
+if ($productId !== null) {
+    $cartModel = new cartModels();
+    $product = $cartModel->getRecord($productId);
+
+    if ($product !== null) {
+        $cartModel->addToCart($productId, $product['name']);
     }
-    
-
-?>
+}

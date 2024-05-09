@@ -10,7 +10,6 @@
             </a>
         </div>
 
-        
 
         <table class="table table-striped my-5">
             <thead>
@@ -25,30 +24,29 @@
                 </tr>
             </thead>
 
-            
+
             <tbody>
                 <?php foreach($data as $index => $product): ?>
-                    <tr>
-                        <td>
-                            <img src="<?php echo $product['image']; ?>" class="img-fluid"
-                                style="width: 50px;">
-                        </td>
-                        <td><?php echo $product['name']; ?></td>
-                        <td><?php echo $product['category_name']; ?></td>
-                        <td><?php echo "$" .  $product['price']; ?></td>
-                        <td><?php echo ($product['discount'] ?? 0) . "%"; ?></td>
-                        <td>
-                            <input type="checkbox" >
-                        </td>
-                        <td>
-                            <button class="btn btn-danger" ng-click="deleteProduct(product)">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </td>
-                        <!-- <td>
+                <tr>
+                    <td>
+                        <img src="<?php echo $product['image']; ?>" class="img-fluid" style="width: 50px;">
+                    </td>
+                    <td><?php echo $product['name']; ?></td>
+                    <td><?php echo $product['category_name']; ?></td>
+                    <td><?php echo "$" .  $product['price']; ?></td>
+                    <td><?php echo ($product['discount'] ?? 0) . "%"; ?></td>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteProduct(product)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                    <!-- <td>
                         <a class="btn btn-primary" href="http://localhost:8080/Ecommerce-Website/admin/category/viewDetail/<?php echo $category['category_id']; ?>">
                             <i class="fas fa-eye"></i>
                         </a>
@@ -56,7 +54,7 @@
                             <i class="fas fa-trash-alt"></i>
                         </button> -->
                     </td>
-                    </tr>
+                </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
