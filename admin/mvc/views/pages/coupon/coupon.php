@@ -24,7 +24,10 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="coupon in listCoupon">
+            <?php foreach($data as $index => $category): ?>
+                <td><?php echo $category['product_id']; ?></td>
+            <?php endforeach; ?>
+                <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ coupon.name }}</td>
                     <td>{{ coupon.discount }}%</td>

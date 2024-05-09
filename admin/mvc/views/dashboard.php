@@ -191,7 +191,7 @@
                                 <div class="col-md-10">
                                     <div class="card-body d-flex align-items-center justify-content-between">
                                         <div>
-                                            <h5 class="card-title">Trần Công Minh</h5>
+                                            <h5 class="card-title">Chung Thái Kiệt</h5>
                                             <p class="mb-0 text-secondary fs-6">Đang Trực Tuyến</p>
                                         </div>
 
