@@ -46,11 +46,19 @@
                                         <div class="text-muted text-sm-end">
                                             <div>
                                                 <h5 class="font-size-15 mb-1">Phương Thức Thanh Toán</h5>
-                                                <p>{{ order.paymentMethod }}</p>
+                                                <p><?php echo $data['payment'] ?></p>
                                             </div>
                                             <div class="mt-4">
                                                 <h5 class="font-size-15 mb-1">Phương Thức Vận Chuyển</h5>
-                                                <p>{{ order.shippingMethod }}</p>
+                                                <p>
+                                                    <?php 
+                                                        if ($data['shipping'] == 0) {
+                                                            echo 'Thường';
+                                                        } elseif ($data['shipping'] == 1) {
+                                                            echo 'Hỏa tốc';
+                                                        }
+                                                    ?>
+                                                </p>
                                             </div>
                                             <div class="mt-4">
                                                 <h5 class="font-size-15 mb-1">Ngày Đặt Hàng</h5>

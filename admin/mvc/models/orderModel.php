@@ -28,7 +28,7 @@
             `order_details`.`created_at`, `order_details`.`quantity`,
             `products`.`image`, `products`.`price`, `products`.`name`, `product_sizes`.`size_name`,
             `product_colors`.`color_name`,
-            `coupouns`.`discount`, `order_details`
+            `coupouns`.`discount`, `order_details`.`payment`, `order_details`.`shipping`
 
             
             FROM `orders` 
