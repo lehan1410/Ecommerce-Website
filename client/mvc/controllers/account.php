@@ -1,7 +1,7 @@
 <?php
-class account extends controller {
-    public function account() {
-        self::view('pages/account/account', []);
+    class account extends controller{
+        static public function account(){
+            self::view('pages/account/account',[]);
+        }
     }
-}
 ?>

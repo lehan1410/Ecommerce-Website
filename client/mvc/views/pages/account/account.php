@@ -13,8 +13,12 @@
     <div class="container">
         <div class="left-content avatar">
             <h4>Thông tin cá nhân</h4>
-            <img src="img/about/avatar.jpg" alt="">
-            <button class="normal">Chọn ảnh</button>
+            <img src="../mvc/assets/img/about/avatar.jpg" alt="">
+            <form action="./upload.php" method="post" enctype="multipart/form-data">
+                Chọn file để upload:
+                <input type="file" name="fileupload" id="fileupload">
+                <input type="submit" value="Đăng ảnh" name="submit">
+            </form>
         </div>
         <div class="right-content form">
             <label for="username">Username</label>
