@@ -237,9 +237,9 @@ INSERT INTO `order_details` (`product_id`, `quantity`, `price`, `total_amount`, 
 ('3', '2', '50', '3', '140', 'Da xac nhan'),
 ('3', '2', '50', '5', '265', 'Cho xac nhan'),
 ('4', '3', '55', '5', '265', 'Cho xac nhan'),
-('5', '1', '40', '4', '210', 'Chua xac nhan'),
-('6', '1', '30', '4', '210', 'Chua xac nhan'),
-('7', '2', '70', '4', '210', 'Chua xac nhan');
+('5', '1', '40', '4', '210', 'Da giao'),
+('6', '1', '30', '4', '210', 'Da giao'),
+('7', '2', '70', '4', '210', 'Da giao');
 
 INSERT INTO `coupouns` (`product_id`, `coupoun_code`, `discount`, `expiry`) VALUES
 ('1', 'A01', '0.05', '2024-06-01'),

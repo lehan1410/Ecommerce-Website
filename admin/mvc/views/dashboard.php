@@ -16,9 +16,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <p class="card-title fw-medium fs-5">Đơn Hàng</p>
-                                <h5 class="fw-bold">
-                                    {{ orders.length }}
-                                </h5>
+                                <?php
+                                    echo "<h5 class='fw-bold'>$data[order]</h5>";
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <p class="card-title fw-medium fs-5">Tổng Doanh Thu</p>
-                                <h5 class="fw-bold">{{ totalRevenue1 | currency: "" : 0 }}đ</h5>
+                                <?php
+                                    echo "<h5 class='fw-bold'>$data[revenue]$</h5>";
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -88,58 +90,57 @@
                         <th>Trạng Thái</th>
                         <th>Thao Tác</th>
                     </thead>
-
+                    
                     <tbody>
-                        <tr ng-repeat="order in waitingOrders">
-                            <td>{{ order.name }}</td>
-                            <td>{{ order.createdAt | date: "HH:mm:ss dd-MM-yyyy" }}</td>
-                            <td>
-                                {{ order.items.length }} Sản Phẩm
-                                <span type="button" class="fw-bold" data-bs-toggle="modal"
-                                    data-bs-target="#dh-{{ order._id }}">
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge text-bg-primary" ng-if="order.status === 'Chờ Xác Nhận'">Chờ
-                                    Xác
-                                    Nhận</span>
-                                <span class="badge text-bg-secondary" ng-if="order.status === 'Đã Xác Nhận'">Đã
-                                    Xác
-                                    Nhận</span>
-                                <span class="badge text-bg-info" ng-if="order.status === 'Đang Vận Chuyển'">Đang
-                                    Giao</span>
-                                <span class="badge text-bg-success" ng-if="order.status === 'Đã Giao'">Đã
-                                    Giao</span>
-                                <span class="badge text-bg-danger" ng-if="order.status === 'Đã Hủy'">Đã
-                                    Hủy</span>
-                            </td>
-                            <td>
-                                <a href="#!order/detail/{{ order._id }}" class="btn btn-danger">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
+                        <?php
+                            while($row = mysqli_fetch_assoc($data['status'])){
+                                echo "<tr>";
+                                echo "<td>" . $row['username'] . "</td>"; 
+                                echo "<td>" . date("H:i:s d-m-Y", strtotime($row['created_at'])) . "</td>";
+                                echo "<td>" . $row['quantity'] . "</td>"; 
+                                echo "<td>";
+                                if ($row['status'] == 'Cho xac nhan') {
+                                    echo '<span class="badge text-bg-primary">Chờ Xác Nhận</span>';
+                                } elseif ($row['status'] === 'Da xac nhan') {
+                                    echo '<span class="badge text-bg-secondary">Đã Xác Nhận</span>';
+                                } elseif ($row['status'] === 'Dang van chuyen') {
+                                    echo '<span class="badge text-bg-info">Đang Giao</span>';
+                                } elseif ($row['status'] === 'Da giao') {
+                                    echo '<span class="badge text-bg-success">Đã Giao</span>';
+                                } elseif ($row['status'] === 'Da huy') {
+                                    echo '<span class="badge text-bg-danger">Đã Hủy</span>';
+                                }
+                                echo "</td>";
+                                echo "<td>";
+                                echo '<a class="btn btn-danger">';
+                                echo '<i class="fa-solid fa-eye"></i>';
+                                echo '</a>';
 
-                                <a ng-click="changeStatus(order)" class="btn btn-primary">
-                                    <i class="fa-solid fa-check"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-
-                        <tr ng-if="waitingOrders.length == 0">
-                            <td colspan="5" class="text-center">Bạn không có đơn hàng cần xác nhận</td>
-                        </tr>
+                                echo '<a class="update btn btn-primary" data-id="' . $row['order_detail_id'] . '">';
+                                echo '<i class="fa-solid fa-check"></i>';
+                                echo '</a>';
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                        <?php
+                            if(count($data) == 0){
+                                echo "<td colspan='5' class='text-center'>Bạn không có đơn hàng cần xác nhận</td>";
+                            }
+                        ?>
                     </tbody>
 
                     <tfoot>
                         <tr>
                             <th colspan="5">
-                                <a href="#!order">Xem tất cả đơn hàng <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="">Xem tất cả đơn hàng <i class="fa-solid fa-arrow-right"></i></a>
                             </th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+        
 
         <div class="row mt-5">
             <div class="col-12 col-md-7 shadow-sm border rounded-2">
@@ -297,3 +298,21 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".update").click(function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/admin/order/update/' + id,
+            type: 'post',
+            success: function(data){
+                // alert(response);
+                location.reload();
+            }
+        });
+    });
+});
+</script>

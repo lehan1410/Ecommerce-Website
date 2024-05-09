@@ -10,6 +10,8 @@
             </a>
         </div>
 
+        
+
         <table class="table table-striped my-5">
             <thead>
                 <tr>
@@ -23,39 +25,40 @@
                 </tr>
             </thead>
 
+            
             <tbody>
-                <tr ng-repeat="product in displayedProducts">
-                    <td>
-                        <img src="{{ product.images[0] }}" alt="{{ product.name }}" class="img-fluid"
-                            style="width: 50px;">
+                <?php foreach($data as $index => $product): ?>
+                    <tr>
+                        <td>
+                            <img src="<?php echo $product['image']; ?>" class="img-fluid"
+                                style="width: 50px;">
+                        </td>
+                        <td><?php echo $product['name']; ?></td>
+                        <td><?php echo $product['category_name']; ?></td>
+                        <td><?php echo "$" .  $product['price']; ?></td>
+                        <td><?php echo ($product['discount'] ?? 0) . "%"; ?></td>
+                        <td>
+                            <input type="checkbox" >
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="deleteProduct(product)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <!-- <td>
+                        <a class="btn btn-primary" href="http://localhost:8080/Ecommerce-Website/admin/category/viewDetail/<?php echo $category['category_id']; ?>">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <button class="remove btn btn-danger" data-category-id="<?php echo $category['category_id']; ?>">
+                            <i class="fas fa-trash-alt"></i>
+                        </button> -->
                     </td>
-                    <td>{{ product.title }}</td>
-                    <td>{{ product.category.title }}</td>
-                    <td>{{ product.price | currency:"": 0 }}đ</td>
-                    <td>{{ product.sale }}%</td>
-                    <td>
-                        <input type="checkbox" ui-switchery class="form-check-input" ng-model="product.isFlashSale"
-                            ng-change="changeFlashSale(product)">
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" ng-click="deleteProduct(product)">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </td>
-                </tr>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
-
-        <div class="w-100 d-flex align-items-center justify-content-center mt-3">
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-danger">
-                    <li ng-repeat="page in pages" class="page-item" ng-class="{active: page === currentPage}">
-                        <a href="" class="page-link" ng-click="setCurrentPage(page)">{{ page }}</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </div>
 </div>
