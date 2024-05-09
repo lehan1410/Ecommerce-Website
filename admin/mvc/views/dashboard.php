@@ -133,7 +133,7 @@
                     <tfoot>
                         <tr>
                             <th colspan="5">
-                                <a href="">Xem tất cả đơn hàng <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="http://localhost:8080/Ecommerce-Website/admin/order/order">Xem tất cả đơn hàng <i class="fa-solid fa-arrow-right"></i></a>
                             </th>
                         </tr>
                     </tfoot>

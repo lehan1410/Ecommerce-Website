@@ -36,8 +36,9 @@
             $a = new Database();
             $a->connect();
             $sql = "SELECT * FROM `orders` 
-            JOIN `order_details` ON `order_details`.`order_detail_id` = `orders`.`order_id` 
-            JOIN `users` ON `users`.`user_id` = `orders`.`user_id`";
+                JOIN `order_details` ON `order_details`.`order_detail_id` = `orders`.`order_id` 
+                JOIN `users` ON `users`.`user_id` = `orders`.`user_id`
+                WHERE `order_details`.`status` != 'Da giao'";
             return mysqli_query($a->conn, $sql);
         }
 

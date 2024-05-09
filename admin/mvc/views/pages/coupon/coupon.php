@@ -24,24 +24,23 @@
             </thead>
 
             <tbody>
-            <?php foreach($data as $index => $category): ?>
-                <td><?php echo $category['product_id']; ?></td>
-            <?php endforeach; ?>
+            <?php foreach($data as $index => $coupoun): ?>
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ coupon.name }}</td>
-                    <td>{{ coupon.discount }}%</td>
-                    <td>{{ coupon.createdAt | date: "dd-MM-yyyy" }}</td>
-                    <td>{{ coupon.expiry | date: "dd-MM-yyyy"}}</td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" href="#!/coupon/edit/{{ coupon._id }}">
-                            <i class="fa-solid fa-edit"></i>
-                        </a>
-                        <button class="btn btn-sm btn-danger" ng-click="deleteCoupon(coupon._id)">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
+                <td><?php echo $index + 1; ?></td>
+                <td><?php echo $coupoun['coupoun_code']; ?></td>
+                <td><?php echo $coupoun['discount']; ?></td>
+                <td><?php echo date('d-m-Y', strtotime($coupoun['created_at'])); ?></td>
+                <td><?php echo date('d-m-Y', strtotime($coupoun['expiry'])); ?></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="#!/coupon/edit/{{ coupon._id }}">
+                        <i class="fa-solid fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteCoupon(coupon._id)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
                 </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

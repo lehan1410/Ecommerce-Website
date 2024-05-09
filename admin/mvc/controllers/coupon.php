@@ -14,9 +14,9 @@ class coupon extends controller{
 
     static public function coupon(){
         $instance = new self();
-
+        $result = $instance->viewDe();
         $data = [];
-        while($row = mysqli_fetch_assoc($instance->viewDe())){
+        while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
         self::view('pages/coupon/coupon',$data);
