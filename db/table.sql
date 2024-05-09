@@ -195,11 +195,11 @@ INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, 
 ('Sport Adidas', '4', '60', '120', '6', '3', '../mvc/assets/img/products/n40.jpg');
 
 
-INSERT INTO `users` (`username`, `email`, `password`, `address`, `phone`, `payment`, `shipping`, `is_active`, `authority`, ) VALUES 
+INSERT INTO `users` (`username`, `email`, `password`, `address`, `phone`, `payment`, `shipping`, `is_active`, `authority`) VALUES 
 ('kiet', '52200140@example.com', 'kiet123', 'Q7', '0953 647 385', 'The visa', 0, TRUE, 0),
 ('han', '52200155@example.com', 'han123', 'Q1', '0123 456 789', 'The tin dung', 0, TRUE, 0),
 ('huy', '52200147@example.com', 'huy321', 'Q4', '0385 430 454', 'Tien mat', 1, TRUE, 0),
-('ngoc', '52200153@example.com', 'ngoc', 'Q5', '0435 756 890', 'Tien mat', 1, FALSE, 0);
+('ngoc', '52200153@example.com', 'ngoc', 'Q5', '0435 756 890', 'Tien mat', 1, TRUE, 0);
 
 
 INSERT INTO `orders` (`user_id`, `product_id`, `amount`, `total_amount`) VALUES
