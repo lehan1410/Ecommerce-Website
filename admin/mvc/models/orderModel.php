@@ -23,7 +23,7 @@
 
         public function viewDe($id){
             $this->data->connect();
-            $sql = "SELECT `order_details`.`status`,
+            $sql = "SELECT `order_details`.`status`, `order_details`.`order_detail_id`,
             `users`.`username`, `users`.`address`, `users`.`email`, `users`.`phone`,
             `order_details`.`created_at`, `order_details`.`quantity`,
             `products`.`image`, `products`.`price`, `products`.`name`, `product_sizes`.`size_name`,
@@ -41,4 +41,6 @@
                 WHERE `order_details`.`order_detail_id` = '$id'";
             return mysqli_query($this->data->conn, $sql);
         }
+
+        
     }

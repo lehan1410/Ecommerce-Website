@@ -133,22 +133,21 @@
                                     <div class="d-print-none mt-4">
                                         <div class="float-end">
                                             <div>
-                                                <button class="btn btn-outline-danger" ng-click="exportToExcel(order)">
+                                                <a class="btn btn-outline-danger" href='http://localhost:8080/Ecommerce-Website/admin/order/excel/<?php echo $data['order_detail_id']; ?>'>
                                                     Xuất Tệp Excel <i class="fa-solid fa-download"></i>
-                                                </button>
+                                                </a>
 
-                                                <button class="btn btn-outline-dark" ng-click="exportToPDF(order)">
+                                                <a class="btn btn-outline-dark" href='http://localhost:8080/Ecommerce-Website/admin/order/pdf/<?php echo $data['order_detail_id']; ?>'>>
                                                     Xuất Tệp PDF <i class="fa-solid fa-download"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- end col -->
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
