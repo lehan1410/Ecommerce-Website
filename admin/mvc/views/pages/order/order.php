@@ -15,25 +15,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="order in orders">
-                    <td>{{ order._id }}</td>
-                    <td>{{ order.name }}</td>
-                    <td>{{ order.createdAt | date: "HH:mm:ss dd-MM-yyyy" }}</td>
-                    <td>
-                        <span class="badge text-bg-secondary" ng-if="order.status === 'Chờ Xác Nhận'">Chờ Xác
-                            Nhận</span>
-                        <span class="badge text-bg-primary" ng-if="order.status === 'Đã Xác Nhận'">Đã Xác
-                            Nhận</span>
-                        <span class="badge text-bg-info" ng-if="order.status === 'Đang Vận Chuyển'">Đang Vận
-                            CHuyển</span>
-                        <span class="badge text-bg-success" ng-if="order.status === 'Đã Giao Hàng'">Đã Giao
-                            Hàng</span>
-                        <span class="badge text-bg-danger" ng-if="order.status === 'Đã Hủy'">Đã Hủy</span>
-                    </td>
-                    <td>
-                        <a href="http://localhost:8080/Ecommerce-Website/admin/order/detail" class="btn btn-sm btn-danger">Xem</a>
-                    </td>
-                </tr>
+                <?php foreach($data as $index => $order): ?>
+                    <tr>
+                        <td><?php echo $index + 1; ?></td>
+                        <td><?php echo $order['username']; ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($order['created_at'])); ?></td>
+                        <td>
+                        <?php
+                            if ($order['status'] == 'Cho xac nhan') {
+                                echo '<span class="badge text-bg-primary">Chờ Xác Nhận</span>';
+                            } elseif ($order['status'] === 'Da xac nhan') {
+                                echo '<span class="badge text-bg-secondary">Đã Xác Nhận</span>';
+                            } elseif ($order['status'] === 'Dang van chuyen') {
+                                echo '<span class="badge text-bg-info">Đang Giao</span>';
+                            } elseif ($order['status'] === 'Da giao') {
+                                echo '<span class="badge text-bg-success">Đã Giao</span>';
+                            } elseif ($order['status'] === 'Da huy') {
+                                echo '<span class="badge text-bg-danger">Đã Hủy</span>';
+                            }
+                        ?>
+                        </td>
+                        <td>
+                            <a href="http://localhost:8080/Ecommerce-Website/admin/order/detail/<?php echo $order['order_id']; ?>" class="btn btn-sm btn-danger">Xem</a>
+                        </td>
+
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
