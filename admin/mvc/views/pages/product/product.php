@@ -66,6 +66,7 @@ $(document).ready(function() {
             success: function(data) {
                 console.log('AJAX request succeeded');
                 // location.reload();
+                console.log(productId);
             },
             error: function(error) {
                 console.log('AJAX request failed');
