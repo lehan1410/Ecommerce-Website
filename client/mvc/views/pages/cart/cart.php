@@ -1,5 +1,5 @@
-
 <link rel="stylesheet" href="../mvc/assets/css/style.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
 
 <body>
@@ -9,36 +9,42 @@
     </section>
 
     <section id="cart" class="section-p1">
-        <table width="100%">
+        <table>
             <thead>
                 <tr>
-                    <td>Remove</td>
-                    <td>Image</td>
-                    <td>Product</td>
-                    <td>Price</td>
-                    <td>Quantity</td>
+                    <th>Action</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-             if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-                if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                    foreach ($_SESSION['cart'] as $productId => $product) {
-                        ?>
+                    // if (session_status() == PHP_SESSION_NONE) {
+                    //     session_start();
+                    // }
+                    require_once "./mvc/models/cartModels.php";
+                    $cartModel = new cartModels();
+                    $cart = $cartModel->getCart();
+
+                    if (!empty($cart)) {
+                        foreach ($cart as $productId => $product) {
+                            $productDetails = $cartModel->getRecord($productId);
+                ?>
                 <tr>
                     <td><a href="remove_from_cart.php?id=<?php echo $productId; ?>">Remove</a></td>
-                    <td><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>"></td>
-                    <td><?php echo $product['name']; ?></td>
-                    <td><?php echo $product['price']; ?></td>
+                    <td><img src="<?php echo $productDetails['image']; ?>" alt="<?php echo $productDetails['name']; ?>">
+                    </td>
+                    <td><?php echo $productDetails['name']; ?></td>
+                    <td><?php echo $productDetails['price']; ?></td>
                     <td><?php echo $product['quantity']; ?></td>
                 </tr>
                 <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>Your cart is empty.</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='5'>Your cart is empty.</td></tr>";
-                }
                 ?>
             </tbody>
         </table>

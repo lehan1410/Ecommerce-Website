@@ -25,6 +25,7 @@ CREATE TABLE `users` (
   `ward` NVARCHAR(255) DEFAULT NULL,
   `address` NVARCHAR(255) DEFAULT NULL,
   `phone` VARCHAR(20) DEFAULT NULL,
+  `avatar_url` VARCHAR(255) DEFAULT NULL,
   `is_active` BOOLEAN DEFAULT TRUE,
   `authority` INT DEFAULT 0,
   `code` INT DEFAULT 0,

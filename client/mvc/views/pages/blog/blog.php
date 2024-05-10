@@ -1,7 +1,5 @@
-
-
 <link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
 <body>
     <section id="page-header" class="blog-header">
@@ -88,7 +86,7 @@
         <a href="#">1</a>
         <a href="#">2</a>
         <a href="#"> <i class="fal fa-long-arrow-alt-right"></i></a>
-        
+
     </section>
 
     <script src="./js/script.js"></script>
