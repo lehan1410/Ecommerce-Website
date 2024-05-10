@@ -17,7 +17,7 @@
 
         public function update($id){
             $this->data->connect();
-            $sql = "UPDATE products SET flash = 0 WHERE id = '$id'";
+            $sql = "UPDATE products SET flash = 0 WHERE product_id = $id";
             return mysqli_query($this->data->conn, $sql);
         }
 

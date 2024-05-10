@@ -69,7 +69,7 @@ $(document).ready(function() {
         var productId = $(this).data('product-id');
         console.log(productId);
         $.ajax({
-            url: 'http://localhost:8080/Ecommerce-Website/admin/product/update/' + productId,
+            url: 'http://localhost:8080/Ecommerce-Website/admin/product/update_flash/' + productId,
             type: 'GET',
             success: function(data) {
                 console.log('AJAX request succeeded');
