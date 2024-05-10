@@ -16,6 +16,11 @@ class product extends controller{
         self::view('pages/product/edit',[]);
     }
 
+    static public function update_flash($id){
+        $instance = new self();
+        $instance->update($id);
+    }
+
     static public function product(){
         $instance = new self();
         $view = $instance->viewProduct();
@@ -28,5 +33,9 @@ class product extends controller{
 
     public function viewProduct(){
         return $this->data->view();
+    }
+
+    public function update($id){
+        $this->data->update($id);
     }
 }

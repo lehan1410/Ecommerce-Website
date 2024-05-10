@@ -27,6 +27,7 @@
 
             <tbody>
                 <?php foreach($data as $index => $product): ?>
+<<<<<<< HEAD
                 <tr>
                     <td>
                         <img src="<?php echo $product['image']; ?>" class="img-fluid" style="width: 50px;">
@@ -47,6 +48,29 @@
                         </button>
                     </td>
                     <!-- <td>
+=======
+                    <tr>
+                        <td>
+                            <img src="<?php echo $product['image']; ?>" class="img-fluid"
+                                style="width: 50px;">
+                        </td>
+                        <td><?php echo $product['name']; ?></td>
+                        <td><?php echo $product['category_name']; ?></td>
+                        <td><?php echo "$" .  $product['price']; ?></td>
+                        <td><?php echo ($product['discount'] ?? 0) . "%"; ?></td>
+                        <td>
+                            <input type="checkbox" class="checkbox" data-product-id="<?php echo $product['product_id']; ?>"<?php if ($product['flash'] == 1) echo 'checked'; ?>>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <!-- <td>
+>>>>>>> 4bb727dc442d52b12d0c77232f2913bfb8d86146
                         <a class="btn btn-primary" href="http://localhost:8080/Ecommerce-Website/admin/category/viewDetail/<?php echo $category['category_id']; ?>">
                             <i class="fas fa-eye"></i>
                         </a>
@@ -60,3 +84,23 @@
         </table>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.checkbox').click(function(event) {
+        var productId = $(this).data('product-id');
+        console.log(productId);
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/admin/product/update/' + productId,
+            type: 'GET',
+            success: function(data) {
+                console.log('AJAX request succeeded');
+                // location.reload();
+            },
+            error: function(error) {
+                console.log('AJAX request failed');
+            }
+        });
+    });
+});
+</script>
