@@ -12,12 +12,14 @@
             $this->data->connect();
             $sql = "SELECT * FROM products join categories on products.category_id = categories.category_id
             left join coupouns on products.product_id = coupouns.product_id";
+            
             return mysqli_query($this->data->conn, $sql);
         }
 
         public function update($id){
             $this->data->connect();
-            $sql = "UPDATE products SET flash = 0 WHERE product_id = $id";
+            $id = mysqli_real_escape_string($this->data->conn, $id);
+            $sql = "UPDATE products SET flash = NOT flash WHERE product_id = '$id'";
             return mysqli_query($this->data->conn, $sql);
         }
 

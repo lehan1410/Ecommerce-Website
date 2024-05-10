@@ -72,13 +72,12 @@
 
                                 <div class="ms-1 row my-4">
                                     <h5 class="">Thay Đổi Trạng Thái Đơn Hàng</h5>
-                                    <select class="form-select w-25 text-start" ng-model="order.status"
-                                        ng-change="updateStatus(order)">
-                                        <option value="Chờ Xác Nhận">Chờ Xác Nhận</option>
-                                        <option value="Đã Xác Nhận">Đã Xác Nhận</option>
-                                        <option value="Đang Vận Chuyển">Đang Vận Chuyển</option>
-                                        <option value="Đã Giao Hàng">Đã Giao Hàng</option>
-                                        <option value="Đã Hủy">Đã Hủy</option>
+                                    <select id="orderStatus" class="form-select w-25 text-start" data-id="<?php echo $data['order_detail_id']; ?>">
+                                        <option value="Cho xac nhan">Chờ Xác Nhận</option>
+                                        <option value="Da xac nhan">Đã Xác Nhận</option>
+                                        <option value="Dang van chuyen">Đang Vận Chuyển</option>
+                                        <option value="Da giao">Đã Giao Hàng</option>
+                                        <option value="Da huy">Đã Hủy</option>
                                     </select>
                                 </div>
 
@@ -151,3 +150,27 @@
             </div>
         </div>
     </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#orderStatus').change(function() {
+        var status = $(this).val().replace(/ /g, '_');
+        status = encodeURIComponent(status);
+        console.log(status);
+        var id = $('#orderStatus').data('id');
+
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/admin/order/update_status/' + id + '/' + status,
+            type: 'POST',
+            success: function(response) {
+                console.log('AJAX request succeeded');
+                location.reload();
+            },
+            error: function(error) {
+                console.log('AJAX request failed');
+            }
+        });
+    });
+});
+</script>

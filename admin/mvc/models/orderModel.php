@@ -13,6 +13,15 @@
             return mysqli_query($this->data->conn, $sql);
         }
 
+        public function update_status($id, $status) {
+            $this->data->connect();
+            $status = str_replace('_', ' ', $status);
+            $status = mysqli_real_escape_string($this->data->conn, $status);
+            $id = mysqli_real_escape_string($this->data->conn, $id);
+            $sql = "UPDATE order_details SET status = '$status' WHERE order_detail_id = '$id'";
+            return mysqli_query($this->data->conn, $sql);
+        }
+
         public function view(){
             $this->data->connect();
             $sql = "SELECT * FROM `orders` 

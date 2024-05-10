@@ -90,7 +90,7 @@
                         <th>Trạng Thái</th>
                         <th>Thao Tác</th>
                     </thead>
-                    
+
                     <tbody>
                         <?php
                             while($row = mysqli_fetch_assoc($data['status'])){
@@ -99,6 +99,7 @@
                                 echo "<td>" . date("H:i:s d-m-Y", strtotime($row['created_at'])) . "</td>";
                                 echo "<td>" . $row['quantity'] . "</td>"; 
                                 echo "<td>";
+
                                 if ($row['status'] == 'Cho xac nhan') {
                                     echo '<span class="badge text-bg-primary">Chờ Xác Nhận</span>';
                                 } elseif ($row['status'] === 'Da xac nhan') {
@@ -112,9 +113,7 @@
                                 }
                                 echo "</td>";
                                 echo "<td>";
-                                echo '<a class="btn btn-danger">';
-                                echo '<i class="fa-solid fa-eye"></i>';
-                                echo '</a>';
+                                echo '<a class="btn btn-danger" href="http://localhost:8080/Ecommerce-Website/admin/order/detail/' . $row['order_id'] . '"><i class="fa-solid fa-eye"></i></a>';
 
                                 echo '<a class="update btn btn-primary" data-id="' . $row['order_detail_id'] . '">';
                                 echo '<i class="fa-solid fa-check"></i>';

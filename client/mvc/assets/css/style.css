@@ -415,8 +415,10 @@ body {
       }
   }
 }
-.shop .filter .catogory {
-  padding-top: 100px;
+
+.category {
+  padding-top: 30px;
+  font-family: 'Roboto', Arial;
 }
 
 .section-p1 {

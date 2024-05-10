@@ -34,16 +34,14 @@
                 <div class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
             </div>
             <div class="category">
-                <input type="checkbox" id="category1" name="category1" value="Áo thun">
-                <label for="category1"> Áo thun</label><br>
-                <input type="checkbox" id="category2" name="category2" value="Áo sơ mi">
-                <label for="category2"> Áo sơ mi</label><br>
-                <input type="checkbox" id="category3" name="category3" value="Quần dài">
-                <label for="category3"> Quần dài</label><br>
-                <input type="checkbox" id="category4" name="category4" value="Quần short">
-                <label for="category4"> Quần short</label><br>
-                <input type="checkbox" id="category5" name="category5" value="Giày">
-                <label for="category5"> Giày</label><br>
+                <input type="checkbox" id="category1" name="category1" value="T-Shirt">
+                <label for="category1"> T-Shirt</label><br>
+                <input type="checkbox" id="category2" name="category2" value="Shirt">
+                <label for="category2"> Shirt</label><br>
+                <input type="checkbox" id="category3" name="category3" value="Pants">
+                <label for="category3"> Pants</label><br>
+                <input type="checkbox" id="category4" name="category4" value="Shoes">
+                <label for="category4"> Shoes</label><br>
             </div>
         </div>
         <section id="product1" class="section-p1">

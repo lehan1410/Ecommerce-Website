@@ -42,6 +42,15 @@ class order extends controller{
         $this->data->update($id);
     }
 
+    static public function update_status($id, $status){
+        $instance = new self();
+        $instance->updateStatus($id, $status);
+    }
+
+    public function updateStatus($id, $status) {
+        $this->data->update_status($id, $status);
+    }
+
     static public function excel($id){
         $fileName = "order" . date('Y-m-d') . ".xlsx"; 
         $excelData[] = array('ID', 'STATUS', 'NAME', 'EMAIL', 'ADDRESS', 'PHONE', 'PAYMENT', 'SHIPPING', 'CREATED', 'PRODUCT_NAME', 'PRODUCT_SIZE', 'PRODUCT_COLOR', 'PRICE', 'QUANTITY'); 
