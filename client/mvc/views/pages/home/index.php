@@ -1,7 +1,6 @@
 
 <link rel="stylesheet" href="../mvc/assets/css/style.css">
 
-
 <body>
     
     
