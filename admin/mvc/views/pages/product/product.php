@@ -38,13 +38,13 @@
                         <td><?php echo "$" .  $product['price']; ?></td>
                         <td><?php echo ($product['discount'] ?? 0) . "%"; ?></td>
                         <td>
-                            <input type="checkbox" >
+                            <input type="checkbox" class="checkbox" data-product-id="<?php echo $product['product_id']; ?>"<?php if ($product['flash'] == 1) echo 'checked'; ?>>
                         </td>
                         <td>
-                            <button class="btn btn-danger" ng-click="deleteProduct(product)">
+                            <button class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </button>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                            <button class="btn btn-primary">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </td>
@@ -62,3 +62,23 @@
         </table>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.checkbox').click(function(event) {
+        var productId = $(this).data('product-id');
+        console.log(productId);
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/admin/product/update/' + productId,
+            type: 'GET',
+            success: function(data) {
+                console.log('AJAX request succeeded');
+                // location.reload();
+            },
+            error: function(error) {
+                console.log('AJAX request failed');
+            }
+        });
+    });
+});
+</script>

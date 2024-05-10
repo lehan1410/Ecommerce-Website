@@ -15,4 +15,10 @@
             return mysqli_query($this->data->conn, $sql);
         }
 
+        public function update($id){
+            $this->data->connect();
+            $sql = "UPDATE products SET flash = 0 WHERE id = '$id'";
+            return mysqli_query($this->data->conn, $sql);
+        }
+
     }
