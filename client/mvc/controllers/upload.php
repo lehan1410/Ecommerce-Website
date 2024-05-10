@@ -1,5 +1,5 @@
 <?php
-  
+  requier_once '../models/database.php';
   // file upload.php xử lý upload file
 
   if ($_SERVER['REQUEST_METHOD'] !== 'POST')
@@ -9,27 +9,28 @@
       die;
   }
 
-  // Kiểm tra có dữ liệu fileupload trong $_FILES không
+  // Kiểm tra có dữ liệu avatar trong $_FILES không
   // Nếu không có thì dừng
-  if (!isset($_FILES["fileupload"]))
+  if (!isset($_FILES["avatar"]))
   {
       echo "Dữ liệu không đúng cấu trúc";
       die;
   }
 
   // Kiểm tra dữ liệu có bị lỗi không
-  if ($_FILES["fileupload"]['error'] != 0)
+  if ($_FILES["avatar"]['error'] != 0)
   {
     echo "Dữ liệu upload bị lỗi";
     die;
   }
 
+  
   // Đã có dữ liệu upload, thực hiện xử lý file upload
 
   //Thư mục bạn sẽ lưu file upload
-  $target_dir    = "uploads/";
+  $target_dir    = "../../../uploads/";
   //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-  $target_file   = $target_dir . basename($_FILES["fileupload"]["name"]);
+  $target_file   = $target_dir . ($_FILES["avatar"]["name"]);
 
   $allowUpload   = true;
 
@@ -42,13 +43,12 @@
   ////Những loại file được phép upload
   $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
 
-
   if(isset($_POST["submit"])) {
       //Kiểm tra xem có phải là ảnh bằng hàm getimagesize
-      $check = getimagesize($_FILES["fileupload"]["tmp_name"]);
+      $check = getimagesize($_FILES["avatar"]["tmp_name"]);
       if($check !== false)
       {
-          echo "Đây là file ảnh - " . $check["mime"] . ".";
+        //   echo "Đây là file ảnh - " . $check["mime"] . ".";
           $allowUpload = true;
       }
       else
@@ -66,7 +66,7 @@
       $allowUpload = false;
   }
   // Kiểm tra kích thước file upload cho vượt quá giới hạn cho phép
-  if ($_FILES["fileupload"]["size"] > $maxfilesize)
+  if ($_FILES["avatar"]["size"] > $maxfilesize)
   {
       echo "Không được upload ảnh lớn hơn $maxfilesize (bytes).";
       $allowUpload = false;
@@ -84,12 +84,20 @@
   if ($allowUpload)
   {
       // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
-      if (move_uploaded_file($_FILES["fileupload"]["tmp_name"], $target_file))
+      if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file))
       {
-          echo "File ". basename( $_FILES["fileupload"]["name"]).
+          echo "File ". basename( $_FILES["avatar"]["name"]).
           " Đã upload thành công.";
 
           echo "File lưu tại " . $target_file;
+
+          db = new Database();
+          db->connect();
+
+          
+
+          // TODO: thêm $target_file vào cột avatar_url của user.
+          
 
       }
       else
@@ -101,4 +109,6 @@
   {
       echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
   }
+
+  
 ?>

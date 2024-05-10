@@ -7,10 +7,10 @@
         <div class="left-content avatar">
             <h4>Thông tin cá nhân</h4>
             <img src="../mvc/assets/img/about/avatar.jpg" alt="">
-            <form action="./upload.php" method="post" enctype="multipart/form-data">
+            <form action="../mvc/controllers/upload.php" method="post" enctype="multipart/form-data">
                 <label for="file"> Pick a file : </label>
-                <input type="file" name="file">
-                <input type="submit" value="Upload">
+                <input type="file" name="avatar">
+                <input type="submit" name="submit" value="Upload">
             </form>
         </div>
         <div class="right-content form">

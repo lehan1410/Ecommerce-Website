@@ -25,6 +25,7 @@ CREATE TABLE `users` (
   `ward` NVARCHAR(255) DEFAULT NULL,
   `address` NVARCHAR(255) DEFAULT NULL,
   `phone` VARCHAR(20) DEFAULT NULL,
+  `avatar_url` VARCHAR(255) DEFAULT NULL,
   `is_active` BOOLEAN DEFAULT TRUE,
   `authority` INT DEFAULT 0,
   `code` INT DEFAULT 0,
@@ -32,13 +33,13 @@ CREATE TABLE `users` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE  `categories` (
   `category_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `category_name` NVARCHAR(100) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
 
 
 CREATE TABLE  `product_colors` (
@@ -75,7 +76,7 @@ CREATE TABLE  `products` (
 );
 
 
-CREATE TABLE IF NOT EXISTS coupouns (
+CREATE TABLE IF NOT EXISTS `coupouns` (
   `coupoun_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `product_id` INT UNSIGNED,
   `coupoun_code` VARCHAR(20) NOT NULL UNIQUE,
@@ -87,31 +88,8 @@ CREATE TABLE IF NOT EXISTS coupouns (
 );
 
 
--- CREATE TABLE  `product_images` (
---   `image_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
---   `product_id` INT UNSIGNED NOT NULL,
---   `image_path` VARCHAR(255) NOT NULL,
---   -- `is_main_image` BOOLEAN DEFAULT FALSE,
---   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
---   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
--- );
-
--- Products Table
--- CREATE TABLE  `cart` (
---   `cart_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
---   `user_id` INT UNSIGNED NOT NULL,
---   `product_id` INT UNSIGNED NOT NULL,
---   `quantity` INT UNSIGNED NOT NULL,
---   `date_added` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
---   FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
---   FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
--- );
-
 -- Orders Table
-CREATE TABLE  `orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   -- `cart_id` INT UNSIGNED,
   `user_id` INT UNSIGNED NOT NULL,
@@ -126,13 +104,15 @@ CREATE TABLE  `orders` (
 );
 
 -- Order Details Table
-CREATE TABLE  `order_details`(
+CREATE TABLE IF NOT EXISTS `order_details`(
   `order_detail_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `quantity` INT UNSIGNED NOT NULL,
   `price` DECIMAL(10, 2) NOT NULL,
   `total_amount` INT UNSIGNED NOT NULL,
   `total_price` DECIMAL (10, 2) NOT NULL, 
+  `payment` NVARCHAR(255) NOT NULL,
+  `shipping` INT,
   `status` NVARCHAR(50) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -215,11 +195,12 @@ INSERT INTO `products` (`name`, `category_id`, `price`, `quantity`, `color_id`, 
 ('Martin Boots', '4', '55', '30', '5', '4', '../mvc/assets/img/products/n39.jpg'),
 ('Sport Adidas', '4', '60', '120', '6', '3', '../mvc/assets/img/products/n40.jpg');
 
-INSERT INTO `users` (`username`, `email`, `password`, `is_active`, `authority`) VALUES 
-('kiet', '52200140@example.com', 'kiet123', TRUE, 0),
-('han', '52200155@example.com', 'han123', TRUE, 0),
-('huy', '52200147@example.com', 'huy321', TRUE, 0),
-('ngoc', '52200153@example.com', 'ngoc', TRUE, 0);
+
+INSERT INTO `users` (`username`, `email`, `password`, `address`, `phone`, `is_active`, `authority`) VALUES 
+('kiet', '52200140@example.com', 'kiet123', 'Q7', '0953 647 385', TRUE, 0),
+('han', '52200155@example.com', 'han123', 'Q1', '0123 456 789', TRUE, 0),
+('huy', '52200147@example.com', 'huy321', 'Q4', '0385 430 454', TRUE, 0),
+('ngoc', '52200153@example.com', 'ngoc', 'Q5', '0435 756 890', FALSE, 0);
 
 
 INSERT INTO `orders` (`user_id`, `product_id`, `amount`, `total_amount`) VALUES
@@ -232,17 +213,19 @@ INSERT INTO `orders` (`user_id`, `product_id`, `amount`, `total_amount`) VALUES
 ('3', '7', '2', (SELECT SUM(amount) FROM (SELECT 1 AS amount UNION ALL SELECT 2 AS amount) AS amounts));
 
 
-INSERT INTO `order_details` (`product_id`, `quantity`, `price`, `total_amount`, `total_price`,  `status`) VALUES
-('1', '1', '40', '3', '140', 'Da xac nhan'),
-('3', '2', '50', '3', '140', 'Da xac nhan'),
-('3', '2', '50', '5', '265', 'Cho xac nhan'),
-('4', '3', '55', '5', '265', 'Cho xac nhan'),
-('5', '1', '40', '4', '210', 'Da giao'),
-('6', '1', '30', '4', '210', 'Da giao'),
-('7', '2', '70', '4', '210', 'Da giao');
+INSERT INTO `order_details` (`product_id`, `quantity`, `price`, `total_amount`, `total_price`, `payment`, `shipping`, `status`) VALUES
+('1', '1', '40', '3', '140', 'The visa', 0, 'Da xac nhan'),
+('3', '2', '50', '3', '140', 'The tin dung', 0, 'Da xac nhan'),
+('3', '2', '50', '5', '265', 'Tien mat', 1, 'Cho xac nhan'),
+('4', '3', '55', '5', '265', 'Tien mat', 1, 'Cho xac nhan'),
+('5', '1', '40', '4', '210', 'Tien mat', 1, 'Da giao'),
+('6', '1', '30', '4', '210', 'The visa', 0, 'Da giao'),
+('7', '2', '70', '4', '210', 'The tin dung', 0,'Da giao');
+
 
 INSERT INTO `coupouns` (`product_id`, `coupoun_code`, `discount`, `expiry`) VALUES
 ('1', 'A01', '0.05', '2024-06-01'),
 ('2', 'A02', '0.01', '2024-05-25'),
 ('3', 'B01', '0.02', '2024-04-20'),
 ('4', 'B02', '0.35', '2024-05-15');
+
