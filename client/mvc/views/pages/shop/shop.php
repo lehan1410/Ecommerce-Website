@@ -22,31 +22,36 @@
     <div class="shop">
         <div class="filter">
             <div class="box">
-                <!-- <h3>Price <span>Range</span></h3> -->
+                <h4>Price</h4>
                 <div class="values">
                     <div>$<span id="first"></span></div> - <div>$<span id="second"></span></div>
                 </div>
-                <small>
-                    Current Range:
-                    <div>$<span id="third"></span></div>
-                </small>
 
                 <div class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
             </div>
             <div class="category">
-                <input type="checkbox" id="category1" name="category1" value="T-Shirt">
-                <label for="category1"> T-Shirt</label><br>
-                <input type="checkbox" id="category2" name="category2" value="Shirt">
-                <label for="category2"> Shirt</label><br>
-                <input type="checkbox" id="category3" name="category3" value="Pants">
-                <label for="category3"> Pants</label><br>
-                <input type="checkbox" id="category4" name="category4" value="Shoes">
-                <label for="category4"> Shoes</label><br>
+                <h4>Category</h4>
+                <input type="checkbox" id="categoryname" name="category1">
+                <label for="category"> T-Shirt</label><br>
+                <input type="checkbox" id="categoryname" name="category2">
+                <label for="category"> Shirt</label><br>
+                <input type="checkbox" id="categoryname" name="category3">
+                <label for="category"> Pants</label><br>
+                <input type="checkbox" id="categoryname" name="category4">
+                <label for="category"> Shoes</label><br>
             </div>
         </div>
         <section id="product1" class="section-p1">
             <div class="pro-container">
-                <?php foreach($data as $index => $product): ?>
+                <?php                 
+                    require_once './mvc/models/shopModels.php';
+                    $shop = new shopModels();
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    // $data = $shop->getPagination($current_page);
+                    list($products, $total_pages) = $shop->getPagination($current_page);  
+                    
+                ?>
+                <?php foreach($products as $product): ?>
                 <div class="pro">
                     <img src=" <?php echo $product['image']; ?>" alt="Product Image">
                     <div class="des">
@@ -65,16 +70,23 @@
                             class="fal fa-shopping-cart cart"></i></a>
                 </div>
                 <?php endforeach; ?>
+
             </div>
         </section>
     </div>
 
-    <!-- <section id="pagination" class="section-p1">
-        <a href="#">1</a>
+    <section id="pagination" class="section-p1">
+        <!-- <a href="#">1</a>
         <a href="#">2</a>
-        <a href="#"> <i class="fal fa-long-arrow-alt-right"></i></a>
-
-    </section> -->
+        <a href="#"> <i class="fal fa-long-arrow-alt-right"></i></a>  -->
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+        <?php if ($i == $current_page): ?>
+        <span class="current-page"><?php echo $i; ?></span>
+        <?php else: ?>
+        <a href="http://localhost:8080/Ecommerce-Website/client/shop/shop/page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php endif; ?>
+        <?php endfor; ?>
+    </section>
 
     <!-- <script src="../js/script.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -88,7 +100,7 @@
             var productId = $(this).data('product_id');
 
             $.ajax({
-                url: 'addtocart.php',
+                url: './mvc/controllers/addtocart.php',
                 method: 'POST',
                 data: {
                     product_id: productId,
@@ -105,43 +117,40 @@
     });
     </script>
     <script>
-    $(function() {
-        $("#slider").slider({
-            range: true,
-            min: 0,
-            max: 500,
-            values: [75, 300],
-            slide: function(event, ui) {
-                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            },
-            stop: function(event, ui) {
-                loadProducts(ui.values[0], ui.values[1], $('#category').val());
-            }
+    $(document).ready(function() {
+        // Lọc sản phẩm khi thay đổi danh mục
+        $('input[name^="category"]').change(function() {
+            filterProducts();
         });
 
-        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-            " - $" + $("#slider-range").slider("values", 1));
-
-        $('#category').change(function() {
-            loadProducts($("#slider-range").slider("values", 0), $("#slider-range").slider("values", 1),
-                $(this).val());
+        // Lọc sản phẩm khi thay đổi giá tiền
+        $('.slider').on('slidestop', function(event, ui) {
+            filterProducts();
         });
+
+        function filterProducts() {
+            var categories = [];
+            $('input[name^="category"]:checked').each(function() {
+                categories.push($(this).val());
+            });
+
+            var minPrice = $('.slider').slider('values', 0);
+            var maxPrice = $('.slider').slider('values', 1);
+
+            $.ajax({
+                url: './mvc/controllers/getProducts.php',
+                type: 'POST',
+                data: {
+                    categories: categories,
+                    minPrice: minPrice,
+                    maxPrice: maxPrice
+                },
+                success: function(response) {
+                    // $('.pro-container').html(response);
+                }
+            });
+        }
     });
-
-    function loadProducts(minPrice, maxPrice, category) {
-        $.ajax({
-            url: './mvc/controllers/getProducts.php',
-            method: 'POST',
-            data: {
-                min_price: minPrice,
-                max_price: maxPrice,
-                category: category
-            },
-            success: function(data) {
-                $('#products').html(data);
-            }
-        });
-    }
     </script>
     <script>
     $('.slider').each(function(e) {
@@ -223,24 +232,10 @@
             },
             stop(event, ui) {
 
-                // $('body').removeClass('ui-slider-active');
-
-                // let duration = .6,
-                //     ease = Elastic.easeOut.config(1.08, .44);
-
-                // TweenMax.to(handle, duration, {
-                //     '--y': 0,
-                //     ease: ease
-                // });
-
-                // TweenMax.to(svgPath, duration, {
-                //     y: 42,
-                //     ease: ease
-                // });
-
                 handle = null;
 
             }
+
         });
 
         var svgPath = new Proxy({
@@ -267,49 +262,6 @@
         svgPath.y = 42;
         svgPath.b = 0;
         svgPath.a = width;
-
-        // $(document).on('mousemove touchmove', e => {
-        //     if (handle) {
-
-        //         let laziness = 4,
-        //             max = 24,
-        //             edge = 52,
-        //             other = handleObj.eq(handle.data('index') == 0 ? 1 : 0),
-        //             currentLeft = handle.position().left,
-        //             otherLeft = other.position().left,
-        //             handleWidth = handle.outerWidth(),
-        //             handleHalf = handleWidth / 2,
-        //             y = e.pageY - handle.offset().top - handle.outerHeight() / 2,
-        //             moveY = (y - laziness >= 0) ? y - laziness : (y + laziness <= 0) ? y + laziness : 0,
-        //             modify = 1;
-
-        //         moveY = (moveY > max) ? max : (moveY < -max) ? -max : moveY;
-        //         modify = handle.data('index') == 0 ? ((currentLeft + handleHalf <= edge ? (currentLeft +
-        //             handleHalf) / edge : 1) * (otherLeft - currentLeft - handleWidth <= edge ? (
-        //             otherLeft - currentLeft - handleWidth) / edge : 1)) : ((currentLeft - (
-        //             otherLeft + handleHalf * 2) <= edge ? (currentLeft - (otherLeft +
-        //             handleWidth)) / edge : 1) * (slider.outerWidth() - (currentLeft +
-        //             handleHalf) <= edge ? (slider.outerWidth() - (currentLeft +
-        //             handleHalf)) / edge : 1));
-        //         modify = modify > 1 ? 1 : modify < 0 ? 0 : modify;
-
-        //         if (handle.data('index') == 0) {
-        //             svgPath.b = currentLeft / 2 * modify;
-        //             svgPath.a = otherLeft;
-        //         } else {
-        //             svgPath.b = otherLeft + handleHalf;
-        //             svgPath.a = (slider.outerWidth() - currentLeft) / 2 + currentLeft + handleHalf + ((
-        //                 slider.outerWidth() - currentLeft) / 2) * (1 - modify);
-        //         }
-
-        //         svgPath.x = currentLeft + handleHalf;
-        //         svgPath.y = moveY * modify + 42;
-
-        //         handle.css('--y', moveY * modify);
-
-        //     }
-        // });
-
     });
 
     function getPoint(point, i, a, smoothing) {
@@ -347,7 +299,8 @@
         let handle = slider.find('.ui-slider-handle');
         slider.css({
             '--l': handle.eq(0).position().left + handle.eq(0).outerWidth() / 2,
-            '--r': slider.outerWidth() - (handle.eq(1).position().left + handle.eq(1).outerWidth() / 2)
+            '--r': slider.outerWidth() - (handle.eq(1).position().left + handle.eq(1).outerWidth() /
+                2)
         });
     }
     </script>
