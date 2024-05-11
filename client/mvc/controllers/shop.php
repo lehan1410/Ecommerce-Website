@@ -8,18 +8,24 @@ require_once './mvc/models/shopModels.php';
         $this->shop = new shopModels();
     }
 
-    static public function shop(){
+    static public function shop($id=1,$s=0,$e=200,$c=[]){  
+        $current_page = substr($id, -1);
         $is = new self();
-        $view = $is->viewProducts();
-        $data = [];
-        while($row = mysqli_fetch_assoc($view)){
-            $data[] = $row;
-        }
+        $view = $is->viewProducts($current_page,$s,$e);
+        list($products, $total_pages) = $view;
+        $data = [
+            "product" => $products,
+            "total_pages" => $total_pages,
+            "s" => $s,
+            "e" => $e
+        ];
         self::view('pages/shop/shop', $data);
     }
 
-    public function viewProducts(){
-        return $this->shop->view();
+    public function viewProducts($current_page,$s,$e){
+        return $this->shop->getPagination($current_page,$s,$e);
     }
+
+
 }
 ?>

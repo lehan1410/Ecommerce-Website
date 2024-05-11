@@ -56,10 +56,18 @@
                     </div>
                     <h4><?php echo "$" . $product['price']; ?></h4>
                 </div>
-                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                <?php
+                    if(!isset($_SESSION["data"])){
+                        echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart" id="add"></i></a>';
+                    } else {
+                        echo '<i class="fal fa-shopping-cart cart add" data-id="' . $_SESSION["data"]["user_id"] . '" data-product-id="' . $product['product_id'] . '"></i>';
+                    }
+                ?>
+                    
             </div>
             <?php endforeach; ?>
         </div>
+
     </section>
 
     <section id="banner" class="section-m1">
@@ -101,10 +109,34 @@
     </section>
 
 
-
     <script src="./js/script.js"></script>
 
 
 </body>
-
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.add').click(function(event) {
+        event.preventDefault();
+        var id = $(this).data('id');
+        var product = $(this).data('product-id');
+        console.log(id);
+        console.log(product);
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/client/order/add/' + id + '/' + product,
+            type: 'POST',
+            data: {
+                product_id: $(this).data('product_id')
+            },
+            success: function(response) {
+                // Handle the response from the server
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    });
+});
+</script>
