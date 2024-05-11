@@ -5,10 +5,10 @@
 <body>
     <div class="container">
         <div class="left-content avatar">
-            <h4>Thông tin cá nhân</h4>
+            <h4>Personal Profile</h4>
             <img src="../mvc/assets/img/about/avatar.jpg" alt="">
             <form action="../mvc/controllers/upload.php" method="post" enctype="multipart/form-data">
-                <label for="file"> Pick a file: </label>
+                <label for="file">Pick a file: </label>
                 <input type="file" name="avatar">
                 <input type="submit" name="submit" value="Upload">
             </form>
@@ -45,26 +45,57 @@
                     <input type="text" id="location" name="location" required>
                 </div>
             </div>
-
-            <div>
-                <label for="link">Link</label>
-                <div class="icon-container">
-                    <i class="fa-solid fa-link"></i>
-                    <input type="text" id="link" name="link" required>
-                </div>
-            </div>
-
-            <div>
-                <label for="bio">Bio</label>
-                <div class="icon-container">
-                    <i class="fa-solid fa-info"></i>
-                    <input type="text" id="bio" name="bio" required>
-                </div>
-            </div>
-
             <button class="normal save">Save change</button>
         </div>
     </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <?php echo "Ảnh nè"?>
+                </td>
+                <td>
+                    <?php echo 123?>
+                </td>
+                <td>
+                    <?php echo 123?>
+                </td>
+                <td>
+                    <?php echo 123?>
+                </td>
+                <td>
+                    <?php echo 123?>
+                </td>
+                <td>
+                    <?php echo "11/05/2024"?>
+                </td>
+                <td>
+                    <?php echo "abc"?>
+                </td>
+                <td>
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 <script>

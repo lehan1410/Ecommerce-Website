@@ -95,3 +95,8 @@
     background-color: white;
     border: 1px solid #088178;
 }
+
+.table {
+    width: 90%;
+    margin-left: 100px;
+}

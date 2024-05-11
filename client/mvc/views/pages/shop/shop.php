@@ -59,8 +59,13 @@
                         </div>
                         <h4><?php echo "$" . $product['price']; ?></h4>
                     </div>
-                    <a href="#" name="cart" data-product_id="<?php echo $product['product_id']; ?>"><i
-                            class="fal fa-shopping-cart cart"></i></a>
+                    <?php
+                        if(!isset($_SESSION["data"])){
+                            echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart"></i></a>';
+                        } else {
+                            echo '<a name="cart" data-product_id="' . $product['product_id'] . '"><i class="fal fa-shopping-cart cart"></i></a>';
+                        }
+                    ?>
                 </div>
                 <?php endforeach; ?>
 
