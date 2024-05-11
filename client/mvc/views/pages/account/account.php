@@ -19,7 +19,7 @@
                 <div class="icon-container">
                     <i class="fa-solid fa-user"></i>
                     <input type="text" id="username" name="username" required>
-                </div>  
+                </div>
             </div>
 
             <div>
@@ -27,15 +27,15 @@
                 <div class="icon-container">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="text" id="email" name="email" required>
-                </div>  
+                </div>
             </div>
-            
+
             <div>
                 <label for="tel">Telephone</label>
                 <div class="icon-container">
                     <i class="fa-solid fa-phone"></i>
                     <input type="text" id="tel" name="tel" required>
-                </div>  
+                </div>
             </div>
 
             <div>
@@ -43,15 +43,15 @@
                 <div class="icon-container">
                     <i class="fa-solid fa-location-dot"></i>
                     <input type="text" id="location" name="location" required>
-                </div>  
+                </div>
             </div>
-            
+
             <div>
                 <label for="link">Link</label>
                 <div class="icon-container">
                     <i class="fa-solid fa-link"></i>
                     <input type="text" id="link" name="link" required>
-                </div>  
+                </div>
             </div>
 
             <div>
@@ -59,7 +59,7 @@
                 <div class="icon-container">
                     <i class="fa-solid fa-info"></i>
                     <input type="text" id="bio" name="bio" required>
-                </div>  
+                </div>
             </div>
 
             <button class="normal save">Save change</button>
