@@ -16,8 +16,17 @@
                 echo '<li><a href="http://localhost:8080/Ecommerce-Website/client/login">Login</a></li>';
             }
             ?>
-            <li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/cart/cart/<?php echo $_SESSION["data"]["user_id"]; ?>"><i
-                        class="far fa-shopping-bag"></i></a></li>
+            
+            <?php
+            if(isset($_SESSION["data"])){
+                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/cart/cart/<?php echo $_SESSION["data"]["user_id"]; ?>"><i
+                class="far fa-shopping-bag"></i></a></li>';
+            } else {
+                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/login"><i
+                class="far fa-shopping-bag"></i></a></li>';
+            }
+            ?>
+
             <?php
             if(isset($_SESSION["data"])) {
                 echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/account/account/' . $_SESSION["data"]["user_id"] . '"><i></i> ' . $_SESSION["data"]["username"] . '</a></li>';

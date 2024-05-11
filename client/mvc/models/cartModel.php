@@ -8,9 +8,9 @@
         }
 
         public function view($id){
-            $query = "SELECT * FROM cart";
-            $result = $this->data->fetch_all($query);
-            return $result;
+            $this->data->connect();
+            $sql = "SELECT * FROM orders";
+            return mysqli_query($this->data->conn, $sql);
         }
     
     }
