@@ -7,10 +7,10 @@
             $this->data = new Database();
         }
 
-        public function view(){
-            $query = "SELECT * FROM cart";
-            $result = $this->data->fetch_all($query);
-            return $result;
+        public function view($id){
+            $this->data->connect();
+            $sql = "SELECT * FROM orders";
+            return mysqli_query($this->data->conn, $sql);
         }
     
     }

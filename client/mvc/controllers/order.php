@@ -12,11 +12,6 @@ require_once './mvc/models/orderModel.php';
     static public function add($id, $product){
         $is = new self();
         $view = $is->add_order($id, $product);
-        // $data = [];
-        // while($row = mysqli_fetch_assoc($view)){
-        //     $data[] = $row;
-        // }
-        // self::view('pages/shop/shop', $data);
     }
 
     public function add_order($id, $product){

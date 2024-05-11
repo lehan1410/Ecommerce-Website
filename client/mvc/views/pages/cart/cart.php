@@ -24,9 +24,7 @@
                     // if (session_status() == PHP_SESSION_NONE) {
                     //     session_start();
                     // }
-                    require_once "./mvc/models/cartModels.php";
-                    $cartModel = new cartModels();
-                    $cart = $cartModel->getCart();
+                    
 
                     if (!empty($cart)) {
                         foreach ($cart as $productId => $product) {
