@@ -65,6 +65,54 @@
             <button class="normal save">Save change</button>
         </div>
     </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Loại Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <?php echo "Ảnh nè"?>
+                </td>
+                <td>
+                    <?php echo "kịt chung"?>
+                </td>
+                <td>
+                    <?php echo "hay dí dl"?>
+                </td>
+                <td>
+                    <?php echo "1k"?>
+                </td>
+                <td>
+                    <?php echo "1"?>
+                </td>
+                <td>
+                    <?php echo "11/05/2024"?>
+                </td>
+                <td>
+                    <?php echo "Chưa xong deadline"?>
+                </td>
+                <td>
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 <script>
