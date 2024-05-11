@@ -18,15 +18,16 @@
 
 </section>
 
+
 <body>
     <div class="shop">
         <div class="filter">
             <div class="box">
                 <h4>Price</h4>
                 <div class="values">
-                    <div>$<span id="first"></span></div> - <div>$<span id="second"></span></div>
+                    <div>$<span id="first"><?php echo isset($data['s']) ? $data['s'] : '0'; ?></span></div> -
+                    <div>$<span id="second"><?php echo isset($data['e']) ? $data['e'] : '1000'; ?></span></div>
                 </div>
-
                 <div class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
             </div>
             <div class="category">
@@ -43,15 +44,7 @@
         </div>
         <section id="product1" class="section-p1">
             <div class="pro-container">
-                <?php                 
-                    require_once './mvc/models/shopModels.php';
-                    $shop = new shopModels();
-                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    // $data = $shop->getPagination($current_page);
-                    list($products, $total_pages) = $shop->getPagination($current_page);  
-                    
-                ?>
-                <?php foreach($products as $product): ?>
+                <?php foreach($data["product"] as $product): ?>
                 <div class="pro">
                     <img src=" <?php echo $product['image']; ?>" alt="Product Image">
                     <div class="des">
@@ -74,23 +67,21 @@
             </div>
         </section>
     </div>
-
     <section id="pagination" class="section-p1">
-        <!-- <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#"> <i class="fal fa-long-arrow-alt-right"></i></a>  -->
-        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <?php if ($i == $current_page): ?>
-        <span class="current-page"><?php echo $i; ?></span>
-        <?php else: ?>
+        <?php for ($i = 1; $i <= $data["total_pages"]; $i++): ?>
         <a href="http://localhost:8080/Ecommerce-Website/client/shop/shop/page=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php endif; ?>
         <?php endfor; ?>
+        <?php
+        $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        ?>
+        <a href="http://localhost:8080/Ecommerce-Website/client/shop/shop/page=<?php echo $current_page + 1; ?>">
+            <i class="fal fa-long-arrow-alt-right"></i></a>
     </section>
+
 
     <!-- <script src="../js/script.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -168,10 +159,11 @@
 
         slider.slider({
             range: true,
-            values: [10, 200],
-            min: 10,
+            values: [<?php echo isset($data['s']) ? $data['s'] : '10'; ?>,
+                <?php echo isset($data['e']) ? $data['e'] : '200'; ?>
+            ],
+            min: 0,
             step: 5,
-            minRange: 50,
             max: 200,
             create(event, ui) {
 
@@ -181,7 +173,8 @@
                     /\B(?=(\d{3})+(?!\d))/g, '&thinsp;'));
                 $(slider.data('value-1')).html(slider.slider('values', 1).toString().replace(
                     /\B(?=(\d{3})+(?!\d))/g, '&thinsp;'));
-                $(slider.data('range')).html((slider.slider('values', 1) - slider.slider('values', 0))
+                $(slider.data('range')).html((slider.slider('values', 1) - slider.slider(
+                        'values', 0))
                     .toString().replace(/\B(?=(\d{3})+(?!\d))/g, '&thinsp;'));
 
                 setCSSVars(slider);
@@ -220,11 +213,14 @@
                     }
                 }
 
-                $(slider.data('value-0')).html(ui.values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                $(slider.data('value-0')).html(ui.values[0].toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
                     '&thinsp;'));
-                $(slider.data('value-1')).html(ui.values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                $(slider.data('value-1')).html(ui.values[1].toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
                     '&thinsp;'));
-                $(slider.data('range')).html((slider.slider('values', 1) - slider.slider('values', 0))
+                $(slider.data('range')).html((slider.slider('values', 1) - slider.slider(
+                        'values', 0))
                     .toString().replace(/\B(?=(\d{3})+(?!\d))/g, '&thinsp;'));
 
                 setCSSVars(slider);
@@ -246,9 +242,11 @@
         }, {
             set(target, key, value) {
                 target[key] = value;
-                if (target.x !== null && target.y !== null && target.b !== null && target.a !==
+                if (target.x !== null && target.y !== null && target.b !== null && target
+                    .a !==
                     null) {
-                    slider.find('svg').html(getPath([target.x, target.y], target.b, target.a,
+                    slider.find('svg').html(getPath([target.x, target.y], target.b, target
+                        .a,
                         width));
                 }
                 return true;
@@ -305,3 +303,19 @@
     }
     </script>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $(".box").click(function(e) {
+        var firstValue = $('#first').text();
+        var secondValue = $('#second').text();
+
+        console.log(firstValue, secondValue);
+
+        window.location.href = 'http://localhost:8080/Ecommerce-Website/client/shop/shop/page=1/' +
+            firstValue + '/' +
+            secondValue;
+    });
+});
+</script>
