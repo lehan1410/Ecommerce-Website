@@ -19,7 +19,7 @@
             
             <?php
             if(isset($_SESSION["data"])){
-                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/cart/cart/<?php echo $_SESSION["data"]["user_id"]; ?>"><i
+                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/cart/cart/<?php echo $_SESSION["data"]["user_id"]; ?><i
                 class="far fa-shopping-bag"></i></a></li>';
             } else {
                 echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/login"><i
