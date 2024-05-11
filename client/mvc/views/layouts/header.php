@@ -19,7 +19,7 @@
                         class="far fa-shopping-bag"></i></a></li>
             <?php
             if(isset($_SESSION["data"])) {
-                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/account/account/' . $_SESSION["data"]["user_id"] . '"><i class="fa fa-user-circle-o"></i> ' . $_SESSION["data"]["username"] . '</a></li>';
+                echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/account/account/' . $_SESSION["data"]["user_id"] . '"><i></i> ' . $_SESSION["data"]["username"] . '</a></li>';
             } else {
                 echo '<li id="lg-bag"><a href="http://localhost:8080/Ecommerce-Website/client/login/login"><i class="fa fa-user-circle-o"></i></a></li>';
             }

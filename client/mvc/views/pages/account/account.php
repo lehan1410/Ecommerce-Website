@@ -8,34 +8,65 @@
             <h4>Thông tin cá nhân</h4>
             <img src="../mvc/assets/img/about/avatar.jpg" alt="">
             <form action="../mvc/controllers/upload.php" method="post" enctype="multipart/form-data">
-                <label for="file"> Pick a file : </label>
+                <label for="file"> Pick a file: </label>
                 <input type="file" name="avatar">
                 <input type="submit" name="submit" value="Upload">
             </form>
         </div>
         <div class="right-content form">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+            <div>
+                <label for="username">Username</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" name="username" required>
+                </div>  
+            </div>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <div>
+                <label for="email">Email</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" id="email" name="email" required>
+                </div>  
+            </div>
+            
+            <div>
+                <label for="tel">Telephone</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="text" id="tel" name="tel" required>
+                </div>  
+            </div>
 
-            <label for="tel">Số điện thoại</label>
-            <input type="tel" id="tel" name="tel" required>
+            <div>
+                <label for="location">Location</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="location" name="location" required>
+                </div>  
+            </div>
+            
+            <div>
+                <label for="link">Link</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-link"></i>
+                    <input type="text" id="link" name="link" required>
+                </div>  
+            </div>
 
-            <label for="city">Tỉnh/Thành phố</label>
-            <input type="city" id="city" name="city" required>
+            <div>
+                <label for="bio">Bio</label>
+                <div class="icon-container">
+                    <i class="fa-solid fa-info"></i>
+                    <input type="text" id="bio" name="bio" required>
+                </div>  
+            </div>
 
-            <label for="dis">Quận/Huyện</label>
-            <input type="dis" id="dis" name="dis" required>
-
-            <label for="war">Phường/Xã</label>
-            <input type="war" id="war" name="war" required>
-
-            <button class="normal save">Lưu thay đổi</button>
+            <button class="normal save">Save change</button>
         </div>
     </div>
 </body>
+
 <script>
 document.getElementById('imageUpload').addEventListener('change', function(e) {
     var file = e.target.files[0];
