@@ -7,7 +7,7 @@
             $this->data = new Database();
         }
 
-        public function view(){
+        public function view($id){
             $query = "SELECT * FROM cart";
             $result = $this->data->fetch_all($query);
             return $result;
