@@ -1,5 +1,5 @@
 <?php
-  requier_once '../models/database.php';
+requier_once("../models/database.php");
   // file upload.php xử lý upload file
 
   if ($_SERVER['REQUEST_METHOD'] !== 'POST')
@@ -91,8 +91,8 @@
 
           echo "File lưu tại " . $target_file;
 
-          db = new Database();
-          db->connect();
+          $db = new Database();
+          $db->connect();
 
           
 
