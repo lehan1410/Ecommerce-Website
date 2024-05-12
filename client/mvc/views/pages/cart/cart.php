@@ -20,20 +20,14 @@
             </thead>
             <tbody>
             <?php
+            
                 foreach ($data as $index => $cart) {
-                    // echo '<tr>
-                    // <td><a href="remove_from_cart.php?id=' . $cart['product_id'] . '">Remove</a></td>
-                    // <td><img src="' . $cart['image'] . '" alt="' . $cart['name'] . '"></td>
-                    // <td>' . $cart['name'] . '</td>
-                    // <td>' . $cart['price'] . '</td>
-                    // <td>' . $cart['quantity'] . '</td>
-                    // </tr>';
                     echo '<tr>
-                    <td><a href="remove_from_cart.php?id=' . $cart['order_id'] . '">Remove</a></td>
-                    <td><img src="' . $cart['order_id'] . '" alt="' . $cart['order_id'] . '"></td>
-                    <td>' . $cart['order_id'] . '</td>
-                    <td>' . $cart['order_id'] . '</td>
-                    <td>' . $cart['order_id'] . '</td>
+                        <td><a href="remove_from_cart.php?id=' . $cart['cart_id'] . '"><i class="far fa-times-circle"></i</a></td>
+                        <td><img src="' . $cart['image'] . '"></td>
+                        <td>' . $cart['name'] . '</td>
+                        <td>' . $cart['price'] . '</td>
+                        <td>' . $cart['quantity'] . '</td>
                     </tr>';
                 }
             ?>
@@ -57,16 +51,33 @@
             <table>
                 <tr>
                     <td>Cart Subtotal</td>
-                    <td>$ 335</td>
+                    <td>
+                    <?php
+                    $grandTotal = 0;
+                    foreach ($data as $index => $cart) {
+                        $total = $cart['quantity'] * $cart['price'];
+                        $grandTotal += $total;
+                    }
+                    echo "$ " . number_format($grandTotal, 2);
+                    ?>
+                </td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
-                    <td>Free</td>
+                    <td>
+                        <select id="shippingMethod">
+                            <option value="Thường">Thường</option>
+                            <option value="Hỏa tốc">Hỏa tốc</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>$ 335</strong></td>
-
+                    <td><strong id="total">
+                        <?php
+                        echo "$ " . number_format($grandTotal, 2);
+                        ?>
+                    </strong></td>
                 </tr>
             </table>
             <button class="normal">Proceed to checkout</button>
@@ -76,3 +87,13 @@
 </body>
 
 </html>
+<script>
+    document.getElementById('shippingMethod').addEventListener('change', function() {
+        var grandTotal = <?php echo $grandTotal; ?>;
+        var quantity = <?php echo array_sum(array_column($data, 'quantity')); ?>;
+        if (this.value == 'Hỏa tốc') {
+            grandTotal += quantity;
+        }
+        document.getElementById('total').textContent = "$ " + grandTotal.toFixed(2);
+    });
+</script>

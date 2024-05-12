@@ -19,7 +19,34 @@ require_once './mvc/models/cartModel.php';
         }
 
         public function viewFu($id){
-            return $this->cart->view($id);
+            return $this->cart->viewFu($id);
+        }
+        
+
+        static public function viewIn($user,$product){
+            $is = new self();
+            $productId = base64_decode($product);
+            $view = $is->viewFo($productId);
+            $data = mysqli_fetch_array($view);
+            self::view('pages/sproduct/sproduct',$data);
+        }
+
+        public function viewFo($product){
+            return $this->cart->view($product);
+        }
+
+        static function add(...$data){
+            $result = array();
+            foreach ($data as $item) {
+                list($key, $value) = explode('=', $item);
+                $result[$key] = $value;
+            }
+            $is = new self();
+            $is->addCart($result);
+        }
+
+        public function addCart($data){
+            $this->cart->add($data);
         }
 
     }
