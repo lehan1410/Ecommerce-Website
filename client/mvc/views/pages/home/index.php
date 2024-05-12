@@ -37,14 +37,16 @@
         </div>
     </section>
 
-    <section id="product1" class="section-p1">
-        <h2>Featured Products</h2>
-        <p>Summer Collection New Morden Design</p>
-        <div class="pro-container">
+    <section id="products" class="pt-md-3">
+        <h2 class="text-center">Featured Products</h2>
+        <p class="text-center">Summer Collection New Morden Design</p>
+        <div class="container">
+            <div class="row gy-5">
             <?php foreach($data as $index => $product): ?>
-            <div class="pro">
+            <div class="col-md-3">
+                <div class="card p-3 h-100">
                 <img src="<?php echo $product['image']; ?>" alt="Product Image">
-                <div class="des">
+                <div class="card-body">
                     <span>adidas</span>
                     <h5><?php echo $product['name']; ?></h5>
                     <div class="star">
@@ -60,12 +62,13 @@
                     if(!isset($_SESSION["data"])){
                         echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart" id="add"></i></a>';
                     } else {
-                        echo '<a class="fal fa-shopping-cart cart add" href="http://localhost:8080/Ecommerce-Website/client/cart/viewIn/' . base64_encode($_SESSION["data"]["user_id"]) . '/' . base64_encode($product['product_id']) . '"></a>';
+                        echo '<i class="fal fa-shopping-cart cart add" data-id="' . $_SESSION["data"]["user_id"] . '" data-product-id="' . $product['product_id'] . '"></i>';
                     }
                 ?>
-                    
+            </div>
             </div>
             <?php endforeach; ?>
+            </div>
         </div>
 
     </section>
