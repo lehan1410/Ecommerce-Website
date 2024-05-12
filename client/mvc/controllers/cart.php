@@ -11,7 +11,7 @@ require_once './mvc/models/cartModel.php';
         static public function cart($id){
             $is = new self();
             $view = $is->viewFu($id);
-            self::view('pages/cart/cart',[]);
+            self::view('pages/cart/cart',$view);
         }
 
         public function viewFu($id){
