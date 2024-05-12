@@ -11,7 +11,11 @@ require_once './mvc/models/cartModel.php';
         static public function cart($id){
             $is = new self();
             $view = $is->viewFu($id);
-            self::view('pages/cart/cart',$view);
+            $data = [];
+            while($row = mysqli_fetch_assoc($view)){
+                $data[] = $row;
+            }
+            self::view('pages/cart/cart',$data);
         }
 
         public function viewFu($id){

@@ -9,7 +9,7 @@
 
         public function view($id){
             $this->data->connect();
-            $sql = "SELECT * FROM orders";
+            $sql = "SELECT * FROM orders where user_id = '$id'";
             return mysqli_query($this->data->conn, $sql);
         }
     
