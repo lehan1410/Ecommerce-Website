@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 foreach ($data as $index => $cart) {
                     echo '<tr>';
                     echo "</td>";
@@ -56,7 +56,7 @@
                 <tr>
                     <td>Cart Subtotal</td>
                     <td>
-                    <?php
+                        <?php
                     $grandTotal = 0;
                     foreach ($data as $index => $cart) {
                         $total = $cart['quantity'] * $cart['price'];
@@ -64,7 +64,7 @@
                     }
                     echo "$ " . number_format($grandTotal, 2);
                     ?>
-                </td>
+                    </td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
@@ -78,10 +78,10 @@
                 <tr>
                     <td><strong>Total</strong></td>
                     <td><strong id="total">
-                        <?php
+                            <?php
                         echo "$ " . number_format($grandTotal, 2);
                         ?>
-                    </strong></td>
+                        </strong></td>
                 </tr>
             </table>
             <button class="normal">Proceed to checkout</button>
@@ -92,25 +92,25 @@
 
 </html>
 <script>
-    document.getElementById('shippingMethod').addEventListener('change', function() {
-        var grandTotal = <?php echo $grandTotal; ?>;
-        var quantity = <?php echo array_sum(array_column($data, 'quantity')); ?>;
-        if (this.value == 'Hỏa tốc') {
-            grandTotal += quantity;
-        }
-        document.getElementById('total').textContent = "$ " + grandTotal.toFixed(2);
-    });
+document.getElementById('shippingMethod').addEventListener('change', function() {
+    var grandTotal = <?php echo $grandTotal; ?>;
+    var quantity = <?php echo array_sum(array_column($data, 'quantity')); ?>;
+    if (this.value == 'Hỏa tốc') {
+        grandTotal += quantity;
+    }
+    document.getElementById('total').textContent = "$ " + grandTotal.toFixed(2);
+});
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-    $('.remove').click(function(e){
+$(document).ready(function() {
+    $('.remove').click(function(e) {
         var id = $(this).data('cart-id');
         $.ajax({
             url: 'http://localhost:8080/Ecommerce-Website/client/cart/remove/' + id,
             type: 'get',
-            success: function(data){
+            success: function(data) {
                 // alert(response);
                 location.reload();
             }

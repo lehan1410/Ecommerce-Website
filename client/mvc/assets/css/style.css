@@ -818,12 +818,8 @@ footer .copyright {
   padding: 5px 10px;
   margin-bottom: 10px;
 }
-<<<<<<< HEAD
-
-
-
 #prodetails.single-pro-details span{
-=======
+}
 #prodetails .single-pro-details input{
   width: 50px;
   height: 47px;
@@ -839,7 +835,6 @@ footer .copyright {
   color: #fff;
 }
 #prodetails .single-pro-details span{
->>>>>>> 9eaac1af00f288ebe5718dfedbd955a3e146db5d
   line-height: 25px;
 }
 
