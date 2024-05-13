@@ -204,6 +204,11 @@ $(document).ready(function() {
                 $('#avatar').attr('src', e.target.result);
             }
             reader.readAsDataURL(this.files[0]);
+
+            // Create a FormData object
+            var formData = new FormData();
+            // Add the file to the FormData object
+            formData.append('avatar', this.files[0]);
         }
     });
 });
