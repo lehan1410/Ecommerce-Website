@@ -1,10 +1,6 @@
 <link rel="stylesheet" href="../mvc/assets/css/style.css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-<?php
-    print_r($data);
-?>
-
 <body>
     <section id="page-header" class="about-header">
         <h2>#let's_talk</h2>
@@ -23,29 +19,26 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+                foreach ($data as $index => $cart) {
+                    // echo '<tr>
+                    // <td><a href="remove_from_cart.php?id=' . $cart['product_id'] . '">Remove</a></td>
+                    // <td><img src="' . $cart['image'] . '" alt="' . $cart['name'] . '"></td>
+                    // <td>' . $cart['name'] . '</td>
+                    // <td>' . $cart['price'] . '</td>
+                    // <td>' . $cart['quantity'] . '</td>
+                    // </tr>';
+                    echo '<tr>
+                    <td><a href="remove_from_cart.php?id=' . $cart['order_id'] . '">Remove</a></td>
+                    <td><img src="' . $cart['order_id'] . '" alt="' . $cart['order_id'] . '"></td>
+                    <td>' . $cart['order_id'] . '</td>
+                    <td>' . $cart['order_id'] . '</td>
+                    <td>' . $cart['order_id'] . '</td>
+                    </tr>';
+                }
+            ?>
+                
                 <?php
-                    // if (session_status() == PHP_SESSION_NONE) {
-                    //     session_start();
-                    // }
-                    
-
-                    if (!empty($cart)) {
-                        foreach ($cart as $productId => $product) {
-                            $productDetails = $cartModel->getRecord($productId);
-                ?>
-                <tr>
-                    <td><a href="remove_from_cart.php?id=<?php echo $productId; ?>">Remove</a></td>
-                    <td><img src="<?php echo $productDetails['image']; ?>" alt="<?php echo $productDetails['name']; ?>">
-                    </td>
-                    <td><?php echo $productDetails['name']; ?></td>
-                    <td><?php echo $productDetails['price']; ?></td>
-                    <td><?php echo $product['quantity']; ?></td>
-                </tr>
-                <?php
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Your cart is empty.</td></tr>";
-                    }
                 ?>
             </tbody>
         </table>

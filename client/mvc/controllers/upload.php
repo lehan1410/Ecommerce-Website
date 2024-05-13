@@ -1,114 +1,76 @@
 <?php
-requier_once("../models/database.php");
-  // file upload.php xử lý upload file
+    class Upload extends database {
+        private $target_dir = "../../../uploads/";
+        private $maxfilesize = 800000;
+        private $allowtypes = array('jpg', 'png', 'jpeg', 'gif');
 
-  if ($_SERVER['REQUEST_METHOD'] !== 'POST')
-  {
-      // Dữ liệu gửi lên server không bằng phương thức post
-      echo "Phải Post dữ liệu";
-      die;
-  }
+        public function __construct() {
+            parent::__construct();
+        }
 
-  // Kiểm tra có dữ liệu avatar trong $_FILES không
-  // Nếu không có thì dừng
-  if (!isset($_FILES["avatar"]))
-  {
-      echo "Dữ liệu không đúng cấu trúc";
-      die;
-  }
+        public function uploadFile() {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                echo "Phải Post dữ liệu";
+                die;
+            }
 
-  // Kiểm tra dữ liệu có bị lỗi không
-  if ($_FILES["avatar"]['error'] != 0)
-  {
-    echo "Dữ liệu upload bị lỗi";
-    die;
-  }
+            if (!isset($_FILES["avatar"])) {
+                echo "Dữ liệu không đúng cấu trúc";
+                die;
+            }
 
-  
-  // Đã có dữ liệu upload, thực hiện xử lý file upload
+            if ($_FILES["avatar"]['error'] != 0) {
+                echo "Dữ liệu upload bị lỗi";
+                die;
+            }
 
-  //Thư mục bạn sẽ lưu file upload
-  $target_dir    = "../../../uploads/";
-  //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-  $target_file   = $target_dir . ($_FILES["avatar"]["name"]);
+            $target_file = $this->target_dir . ($_FILES["avatar"]["name"]);
+            $allowUpload = true;
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-  $allowUpload   = true;
+            if(isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+                if($check !== false) {
+                    $allowUpload = true;
+                } else {
+                    echo "Không phải file ảnh.";
+                    $allowUpload = false;
+                }
+            }
 
-  //Lấy phần mở rộng của file (jpg, png, ...)
-  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            if (file_exists($target_file)) {
+                echo "Tên file đã tồn tại trên server, không được ghi đè";
+                $allowUpload = false;
+            }
 
-  // Cỡ lớn nhất được upload (bytes)
-  $maxfilesize   = 800000;
+            if ($_FILES["avatar"]["size"] > $this->maxfilesize) {
+                echo "Không được upload ảnh lớn hơn " . $this->maxfilesize . " (bytes).";
+                $allowUpload = false;
+            }
 
-  ////Những loại file được phép upload
-  $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
+            if (!in_array($imageFileType, $this->allowtypes)) {
+                echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
+                $allowUpload = false;
+            }
 
-  if(isset($_POST["submit"])) {
-      //Kiểm tra xem có phải là ảnh bằng hàm getimagesize
-      $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-      if($check !== false)
-      {
-        //   echo "Đây là file ảnh - " . $check["mime"] . ".";
-          $allowUpload = true;
-      }
-      else
-      {
-          echo "Không phải file ảnh.";
-          $allowUpload = false;
-      }
-  }
+            if ($allowUpload) {
+                if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                    echo "File ". basename( $_FILES["avatar"]["name"]) . " Đã upload thành công.";
+                    echo "File lưu tại " . $target_file;
 
-  // Kiểm tra nếu file đã tồn tại thì không cho phép ghi đè
-  // Bạn có thể phát triển code để lưu thành một tên file khác
-  if (file_exists($target_file))
-  {
-      echo "Tên file đã tồn tại trên server, không được ghi đè";
-      $allowUpload = false;
-  }
-  // Kiểm tra kích thước file upload cho vượt quá giới hạn cho phép
-  if ($_FILES["avatar"]["size"] > $maxfilesize)
-  {
-      echo "Không được upload ảnh lớn hơn $maxfilesize (bytes).";
-      $allowUpload = false;
-  }
+                    $this->connect();
 
+                    // TODO: thêm $target_file vào cột avatar_url của user.
 
-  // Kiểm tra kiểu file
-  if (!in_array($imageFileType,$allowtypes ))
-  {
-      echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
-      $allowUpload = false;
-  }
+                } else {
+                    echo "Có lỗi xảy ra khi upload file.";
+                }
+            } else {
+                echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
+            }
+        }
+    }
 
-
-  if ($allowUpload)
-  {
-      // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
-      if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file))
-      {
-          echo "File ". basename( $_FILES["avatar"]["name"]).
-          " Đã upload thành công.";
-
-          echo "File lưu tại " . $target_file;
-
-          $db = new Database();
-          $db->connect();
-
-          
-
-          // TODO: thêm $target_file vào cột avatar_url của user.
-          
-
-      }
-      else
-      {
-          echo "Có lỗi xảy ra khi upload file.";
-      }
-  }
-  else
-  {
-      echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
-  }
-
-  
+$upload = new Upload();
+$upload->uploadFile();
 ?>

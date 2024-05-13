@@ -4,9 +4,10 @@
 
 <body>
     <div class="container">
-        <div class="left-content avatar">
+
+        <div class="left-content-avatar">
             <h4>Personal Profile</h4>
-            <img src="../mvc/assets/img/about/avatar.jpg" alt="">
+            <img src="../mvc/assets/img/avatar.jpg" alt="">
             <form action="../mvc/controllers/upload.php" method="post" enctype="multipart/form-data">
                 <label for="file">Pick a file: </label>
                 <input type="file" name="avatar">
