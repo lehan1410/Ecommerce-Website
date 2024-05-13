@@ -500,18 +500,19 @@ body {
 }
 
 #product1 .pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
   font-weight: 500;
   color: #088178;
+  border: 1px solid #cce7d0;
   position: absolute;
   bottom: 20px;
-  right: 30px;
-  font-size: 24px;
-  transition: color 0.3s ease;
-} 
-
-#product1 .pro .cart{
-  color: #065a4f;
+  right: 10px;
 }
+
 
 #banner {
   display: flex;
@@ -758,8 +759,6 @@ footer .copyright {
   height: 40vh;
   background-size: cover;
   background-position: center;
-  /* background-color: cover;
-  padding: 14px; */
   
   
 }
@@ -819,15 +818,33 @@ footer .copyright {
   padding: 5px 10px;
   margin-bottom: 10px;
 }
+<<<<<<< HEAD
 
 
 
 #prodetails.single-pro-details span{
+=======
+#prodetails .single-pro-details input{
+  width: 50px;
+  height: 47px;
+  padding-left: 10px;
+  font-size:16px ;
+  margin-right: 10px;
+}
+#prodetails .single-pro-details input:focus{
+  outline: none;
+}
+#prodetails .single-pro-details button{
+  background: #088178 ;
+  color: #fff;
+}
+#prodetails .single-pro-details span{
+>>>>>>> 9eaac1af00f288ebe5718dfedbd955a3e146db5d
   line-height: 25px;
 }
 
 /* Blog Page */
-#page-header.blog-header{
+#page-header .blog-header{
   background-image: url("../img/banner/b19.jpg");
   
 }
@@ -889,7 +906,7 @@ footer .copyright {
 }
 
 /* About Page */
-#page-header.about-header {
+#page-header .about-header {
   background-image: url("../img/about/banner.png");
 }
 #about-head{

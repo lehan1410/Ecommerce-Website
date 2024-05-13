@@ -25,7 +25,7 @@
                     echo "<p style='color: red; padding-bottom: 10px;'>".$txt_error."</p>";
                 }
                 ?> -->
-                <input class="send" type="submit" name="send" value="Recover Password" style="background:#512da8;color:#fff" >
+                <input class="send" type="submit" name="send" value="Recover Password"  >
             </form>
         </div>
     </div>

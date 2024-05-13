@@ -20,7 +20,7 @@ body {
 .login h1 ,
 .fg h1{
     text-align: center;
-    color: #5b6574;
+    color: #4c2b99;
     font-size: 24px;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #dee0e4;
@@ -39,7 +39,6 @@ body {
     align-items: center;
     width: 30px;
     height: 50px;
-    /* background-color: #000; */
     color: #000;
 }
 .addmail p{
@@ -47,7 +46,6 @@ body {
     font-weight: 680;
     margin:5px 15px;
     text-align: center;
-    /* color: #5b6574; */
     
 }
 .login form input[type="password"], .login form input[type="text"] 
@@ -72,12 +70,13 @@ body {
 .fg form input[type="submit"] {
     width: 50%;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 15px;
     background-color: #E3E6F3;
     border-radius: 20px;
     cursor: pointer;
-    font-weight: bold;
     color: black;
+    border: 1px solid #dee0e4;
+    font-size: 16px;
     transition: background-color 0.2s;
 }
 .login form input[type="submit"]:hover,
@@ -108,11 +107,11 @@ body {
 
 
 .label-text {
-    color: #333; 
+    color: #333;
 }
 
 .forgotPwd a {
-    color: #000;
+    color: #4c2b99;
     text-decoration: none;
 }
 
@@ -128,9 +127,16 @@ body {
     text-decoration: none;
 }
 #register a{
-    color: #000;
+    color: #4c2b99;
     text-decoration: none;
 }
 #register:hover a{
     text-decoration: underline;
+}
+
+p{
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
