@@ -48,17 +48,20 @@ p {
 
 button.normal{
   font-size: 14px;
-  font-weight: 600;
-  padding: 15px 30px;
-  color: #000;
-  background-color: #fff;
-  border-radius: 4px;
+  font-weight: 500px;
+  padding: 8px 8px 5px 5px;
+  margin-left: 10px;
+  margin-top:20px ;
   cursor: pointer;
-  border: none;
   outline: none;
   transition: 0.2s ;
+  font-family:Arial, Helvetica, sans-serif;
+  border: 1px solid;
 }
-
+button.normal:hover{
+  background: #000;
+  color: #fff;
+}
 button.white {
   font-size: 13px;
   font-weight: 600;
@@ -816,20 +819,9 @@ footer .copyright {
   padding: 5px 10px;
   margin-bottom: 10px;
 }
-#prodetails.single-pro-details input{
-  width: 50px;
-  height: 47px;
-  padding-left: 10px;
-  font-size:16px ;
-  margin-right: 10px;
-}
-#prodetails.single-pro-details input:focus{
-  outline: none;
-}
-#prodetails.single-pro-details button{
-  background: #088178 ;
-  color: #fff;
-}
+
+
+
 #prodetails.single-pro-details span{
   line-height: 25px;
 }
@@ -1412,4 +1404,25 @@ footer .copyright {
   }
 
   
+}
+input#quantity{
+  width: 50px;
+  height: 30px;
+  font-size: 14px;
+  border: 1.5px solid;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+}
+select{
+  width:fit-content;
+  font-size: 14px;
+  border: 1.5px solid;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 5px 5px 5px 5px;
+}
+.a123{
+display: flex;
+justify-content: space-evenly;
+margin-left: -70px;
 }

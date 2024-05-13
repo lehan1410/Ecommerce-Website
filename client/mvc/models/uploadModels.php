@@ -1,5 +1,5 @@
 <?php
-    class Upload extends database {
+    class upload extends database {
         private $target_dir = "../../../uploads/";
         private $maxfilesize = 800000;
         private $allowtypes = array('jpg', 'png', 'jpeg', 'gif');
@@ -7,7 +7,6 @@
         public function __construct() {
             parent::__construct();
         }
-
         public function uploadFile() {
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 echo "Phải Post dữ liệu";
@@ -70,7 +69,4 @@
             }
         }
     }
-
-$upload = new Upload();
-$upload->uploadFile();
 ?>

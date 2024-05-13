@@ -22,5 +22,11 @@
             $sql = "UPDATE products SET flash = NOT flash WHERE product_id = '$id'";
             return mysqli_query($this->data->conn, $sql);
         }
+        public function viewCategory(){
+            $this->data->connect();
+            $sql = "SELECT category_name FROM categories";
+            return mysqli_query($this->data->conn, $sql);
+        }
+        
 
     }
