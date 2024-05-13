@@ -61,9 +61,9 @@
                     </div>
                     <?php
                         if(!isset($_SESSION["data"])){
-                            echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart"></i></a>';
+                            echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart" id="add"></i></a>';
                         } else {
-                            echo '<a name="cart" data-product_id="' . $product['product_id'] . '"><i class="fal fa-shopping-cart cart"></i></a>';
+                            echo '<a class="fal fa-shopping-cart cart add" href="http://localhost:8080/Ecommerce-Website/client/cart/viewIn/' . base64_encode($_SESSION["data"]["user_id"]) . '/' . base64_encode($product['product_id']) . '"></a>';
                         }
                     ?>
                 </div>

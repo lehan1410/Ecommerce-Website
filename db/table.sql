@@ -230,3 +230,18 @@ INSERT INTO `coupouns` (`product_id`, `coupoun_code`, `discount`, `expiry`) VALU
 ('3', 'B01', '0.02', '2024-04-20'),
 ('4', 'B02', '0.35', '2024-05-15');
 
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `cart_id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `product_id` INT UNSIGNED NOT NULL,
+  `quantity` INT UNSIGNED NOT NULL,
+  `price` INT UNSIGNED NOT NULL,
+  `status` NVARCHAR(50) NOT NULL,
+  `color` NVARCHAR(50) NOT NULL,
+  `size` NVARCHAR(50) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+  FOREIGN KEY (`product_id`) REFERENCES products(`product_id`)
+  -- FOREIGN KEY (`cart_id`) REFERENCES cart(`cart_id`)
+);

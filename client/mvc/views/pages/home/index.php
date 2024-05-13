@@ -37,14 +37,16 @@
         </div>
     </section>
 
-    <section id="product1" class="section-p1">
-        <h2>Featured Products</h2>
-        <p>Summer Collection New Morden Design</p>
-        <div class="pro-container">
+    <section id="products" class="pt-md-3">
+        <h2 class="text-center">Featured Products</h2>
+        <p class="text-center">Summer Collection New Morden Design</p>
+        <div class="container">
+            <div class="row gy-5">
             <?php foreach($data as $index => $product): ?>
-            <div class="pro">
+            <div class="col-md-3">
+                <div class="card p-3 h-100">
                 <img src="<?php echo $product['image']; ?>" alt="Product Image">
-                <div class="des">
+                <div class="card-body">
                     <span>adidas</span>
                     <h5><?php echo $product['name']; ?></h5>
                     <div class="star">
@@ -63,9 +65,10 @@
                         echo '<i class="fal fa-shopping-cart cart add" data-id="' . $_SESSION["data"]["user_id"] . '" data-product-id="' . $product['product_id'] . '"></i>';
                     }
                 ?>
-                    
+            </div>
             </div>
             <?php endforeach; ?>
+            </div>
         </div>
 
     </section>
@@ -114,29 +117,3 @@
 
 </body>
 </html>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('.add').click(function(event) {
-        event.preventDefault();
-        var id = $(this).data('id');
-        var product = $(this).data('product-id');
-        console.log(id);
-        console.log(product);
-        $.ajax({
-            url: 'http://localhost:8080/Ecommerce-Website/client/order/add/' + id + '/' + product,
-            type: 'POST',
-            data: {
-                product_id: $(this).data('product_id')
-            },
-            success: function(response) {
-                // Handle the response from the server
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
-            }
-        });
-    });
-});
-</script>
