@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <h2>Registration</h2>
+    <div class="register">
+        <h1>Registration</h1>
         <form action="http://localhost:8080/Ecommerce-Website/client/registration/registerAction" method="post">
             <div class="input-box">
-                <input type="text" placeholder="Enter your Name" required name="name">
+                <input type="text" placeholder="Enter Your Name" required name="name">
             </div>
             <div class="input-box">
-                <input type="email" placeholder="Enter your Email" required name="email">
+                <input type="email" placeholder="Enter Your Email" required name="email">
             </div>
             <div class="input-box">
                 <input type="text" placeholder="Create Password" required name="pass">
@@ -25,7 +25,7 @@
                 <input type="checkbox">
                 <h3>I accept terms & conditions</h3>
             </div> -->
-            <div class="input-box button">
+            <div class="bt">
                 <input type="submit" value="Register Now" name="sign">
             </div>
             <div class="text">

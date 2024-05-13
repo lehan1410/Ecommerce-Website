@@ -42,17 +42,18 @@
             </div>
             <input type="submit" value="Login">
             <div id="register">
-                <span>Do you haven't account?</span> <a
-                    href="http://localhost:8080/Ecommerce-Website/client/registration/registration"> Đăng ký</a>
+                <span style="margin-right: 5px;">Do you haven't account?</span> <a
+                    href="http://localhost:8080/Ecommerce-Website/client/registration/registration"> Register</a>
             </div>
 
         </form>
 
+        
         <?php
-			if (count($data) != 0) {
-				echo "<p class='text-danger'>$data[0]</p>";
-			}
-		?>
+            if (count($data) != 0) {
+                echo "<p class='error-message' >Login failed! Invalid email-id or password!</p>";
+            }
+        ?>
 
 
     </div>
