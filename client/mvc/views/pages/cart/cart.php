@@ -20,20 +20,24 @@
             </thead>
             <tbody>
             <?php
-            
                 foreach ($data as $index => $cart) {
-                    echo '<tr>
-                        <td><a href="remove_from_cart.php?id=' . $cart['cart_id'] . '"><i class="far fa-times-circle"></i</a></td>
-                        <td><img src="' . $cart['image'] . '"></td>
-                        <td>' . $cart['name'] . '</td>
-                        <td>' . $cart['price'] . '</td>
-                        <td>' . $cart['quantity'] . '</td>
-                    </tr>';
+                    echo '<tr>';
+                    echo "</td>";
+                    echo "<td>";
+                    echo '<a class="remove btn btn-danger" data-cart-id="'.$cart["cart_id"].'"><i class="fas fa-trash-alt"></i></a>';
+
+                    echo '<a class="update btn btn-primary">';
+                    echo '<i class="fa-solid fa-check"></i>';
+                    echo '</a>';
+                    echo "</td>";
+                  
+                    echo '<td><img src="' . $cart['image'] . '"></td>';
+                    echo '<td>' . $cart['name'] . '</td>';
+                    echo '<td>' . $cart['price'] . '</td>';
+                    echo '<td>' . $cart['quantity'] . '</td>';
+                    echo '</tr>';
                 }
             ?>
-                
-                <?php
-                ?>
             </tbody>
         </table>
     </section>
@@ -96,4 +100,21 @@
         }
         document.getElementById('total').textContent = "$ " + grandTotal.toFixed(2);
     });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.remove').click(function(e){
+        var id = $(this).data('cart-id');
+        $.ajax({
+            url: 'http://localhost:8080/Ecommerce-Website/client/cart/remove/' + id,
+            type: 'get',
+            success: function(data){
+                // alert(response);
+                location.reload();
+            }
+        });
+    });
+});
 </script>

@@ -49,5 +49,13 @@ require_once './mvc/models/cartModel.php';
             $this->cart->add($data);
         }
 
+        static public function remove($id){
+            $is = new self();
+            $is->removeCart($id);
+        }
+
+        public function removeCart($id){
+            $this->cart->remove($id);
+        }
     }
 ?>

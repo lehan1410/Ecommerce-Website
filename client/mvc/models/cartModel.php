@@ -25,6 +25,12 @@
             INNER JOIN products ON cart.product_id = products.product_id WHERE cart.user_id = '$id'";
             return mysqli_query($this->data->conn, $sql);
         }
-    
+        
+        public function remove($id){
+            $this->data->connect();
+            $sql = "DELETE FROM cart
+            WHERE cart_id = '$id' ";
+            return mysqli_query($this->data->conn, $sql);
+        }
     }
 ?>
