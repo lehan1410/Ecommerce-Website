@@ -155,7 +155,7 @@ body {
   color: #088178;
 }
 
-#hero button{
+#hero a{
   background-image: url("../img/button.png");
   background-color: transparent;
   color: #088178;
@@ -165,6 +165,7 @@ body {
   cursor: pointer;
   font-weight: 700;
   font-size: 15px;
+  text-decoration: none;
 }
 
 #feature{

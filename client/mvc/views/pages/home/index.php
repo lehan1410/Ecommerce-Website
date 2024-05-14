@@ -7,7 +7,7 @@
         <h2>Super value deals</h2>
         <h1>On all products</h1>
         <p>Save more with coupons & up to 70% off!</p>
-        <button>Shop Now</button>
+        <a href="http://localhost:8080/Ecommerce-Website/client/shop/shop">Shop Now</a>
     </section>
 
     <section id="feature" class="section-p1">
@@ -42,32 +42,32 @@
         <p class="text-center">Summer Collection New Morden Design</p>
         <div class="container">
             <div class="row gy-5">
-            <?php foreach($data as $index => $product): ?>
-            <div class="col-md-3">
-                <div class="card p-3 h-100">
-                <img src="<?php echo $product['image']; ?>" alt="Product Image">
-                <div class="card-body">
-                    <span>adidas</span>
-                    <h5><?php echo $product['name']; ?></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4><?php echo "$" . $product['price']; ?></h4>
-                </div>
-                <?php
+                <?php foreach($data as $index => $product): ?>
+                <div class="col-md-3">
+                    <div class="card p-3 h-100">
+                        <img src="<?php echo $product['image']; ?>" alt="Product Image">
+                        <div class="card-body">
+                            <span>adidas</span>
+                            <h5><?php echo $product['name']; ?></h5>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4><?php echo "$" . $product['price']; ?></h4>
+                        </div>
+                        <?php
                     if(!isset($_SESSION["data"])){
                         echo '<a href="http://localhost:8080/Ecommerce-Website/client/login"><i class="fal fa-shopping-cart cart" id="add"></i></a>';
                     } else {
                         echo '<a class="fal fa-shopping-cart cart add" href="http://localhost:8080/Ecommerce-Website/client/cart/viewIn/' . base64_encode($_SESSION["data"]["user_id"]) . '/' . base64_encode($product['product_id']) . '"></a>';
                     }
                 ?>
-            </div>
-            </div>
-            <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
             </div>
         </div>
 
@@ -116,4 +116,5 @@
 
 
 </body>
+
 </html>
