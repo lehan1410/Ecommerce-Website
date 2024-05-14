@@ -30,7 +30,7 @@ function checkUser2($email) {
             $mail->Password = 'eags pwty jjij hsuq';       
             $mail->SMTPSecure = 'tls';                  
             $mail->Port = 587;
-            $mail->setFrom('52200155@student.tdtu.edu.vn', 'WEBGK-N11');
+            $mail->setFrom('52200155@student.tdtu.edu.vn', 'WEBCK-N11');
             $mail->addAddress($email);    
             $mail->isHTML(true);                                  
             $mail->Subject = 'Password Reset Code';

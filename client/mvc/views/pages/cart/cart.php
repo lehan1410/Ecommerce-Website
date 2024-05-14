@@ -175,7 +175,7 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
 <script>
 $(document).ready(function() {
     $('.normal').on('click', function(event) {
-        event.preventDefault();
+        
         var couponCode = $('input[name="couponCode"]').val();
         var grandTotal = <?php echo $grandTotal; ?>;
         var discount = 0;
