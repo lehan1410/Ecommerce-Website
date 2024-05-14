@@ -26,5 +26,8 @@ class Database
 			$this->conn->close();
 		}
 	}
+	public function prepare($sql) {
+        return $this->conn->prepare($sql);
+    }
 }
 ?>

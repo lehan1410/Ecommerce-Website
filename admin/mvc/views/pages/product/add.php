@@ -3,6 +3,7 @@
         <h5 class="mb-0 fw-semibold">Thêm Sản Phẩm Mới</h5>
     </div>
 
+
     <div class="px-5">
         <form class="row my-5" enctype="multipart/form-data">
 
@@ -15,11 +16,16 @@
                 <label for="category">Loại Sản Phẩm</label>
                 <select name="category" id="category" class="form-select" ng-model="category">
                     <option value="">Chọn Loại Sản Phẩm</option>
-                    <option ng-repeat="category in categories" value="{{ category._id }}">{{ category.title }}</option>
+                    <?php foreach ($data as $category): ?>
+                    <option value="<?php echo $category['category_name']; ?>">
+                        <?php echo $category['category_name']; ?>
+                    </option>
+                    <?php endforeach; ?>
+
                 </select>
             </div>
 
-            <div class="col-12 col-md-6 mb-4">
+            <div class=" col-12 col-md-6 mb-4">
                 <label for="price">Giá </label>
                 <input type="number" class="form-control" id="price" ng-model="price">
             </div>

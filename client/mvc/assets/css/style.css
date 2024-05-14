@@ -48,17 +48,20 @@ p {
 
 button.normal{
   font-size: 14px;
-  font-weight: 600;
-  padding: 15px 30px;
-  color: #000;
-  background-color: #fff;
-  border-radius: 4px;
+  font-weight: 500px;
+  padding: 8px 8px 5px 5px;
+  margin-left: 10px;
+  margin-top:20px ;
   cursor: pointer;
-  border: none;
   outline: none;
   transition: 0.2s ;
+  font-family:Arial, Helvetica, sans-serif;
+  border: 1px solid;
 }
-
+button.normal:hover{
+  background: #000;
+  color: #fff;
+}
 button.white {
   font-size: 13px;
   font-weight: 600;
@@ -497,18 +500,19 @@ body {
 }
 
 #product1 .pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
   font-weight: 500;
   color: #088178;
+  border: 1px solid #cce7d0;
   position: absolute;
   bottom: 20px;
-  right: 30px;
-  font-size: 24px;
-  transition: color 0.3s ease;
-} 
-
-#product1 .pro .cart{
-  color: #065a4f;
+  right: 10px;
 }
+
 
 #banner {
   display: flex;
@@ -755,8 +759,6 @@ footer .copyright {
   height: 40vh;
   background-size: cover;
   background-position: center;
-  /* background-color: cover;
-  padding: 14px; */
   
   
 }
@@ -816,26 +818,28 @@ footer .copyright {
   padding: 5px 10px;
   margin-bottom: 10px;
 }
-#prodetails.single-pro-details input{
+#prodetails.single-pro-details span{
+}
+#prodetails .single-pro-details input{
   width: 50px;
   height: 47px;
   padding-left: 10px;
   font-size:16px ;
   margin-right: 10px;
 }
-#prodetails.single-pro-details input:focus{
+#prodetails .single-pro-details input:focus{
   outline: none;
 }
-#prodetails.single-pro-details button{
+#prodetails .single-pro-details button{
   background: #088178 ;
   color: #fff;
 }
-#prodetails.single-pro-details span{
+#prodetails .single-pro-details span{
   line-height: 25px;
 }
 
 /* Blog Page */
-#page-header.blog-header{
+#page-header .blog-header{
   background-image: url("../img/banner/b19.jpg");
   
 }
@@ -897,7 +901,7 @@ footer .copyright {
 }
 
 /* About Page */
-#page-header.about-header {
+#page-header .about-header {
   background-image: url("../img/about/banner.png");
 }
 #about-head{
@@ -1412,4 +1416,25 @@ footer .copyright {
   }
 
   
+}
+input#quantity{
+  width: 50px;
+  height: 30px;
+  font-size: 14px;
+  border: 1.5px solid;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+}
+select{
+  width:fit-content;
+  font-size: 14px;
+  border: 1.5px solid;
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 5px 5px 5px 5px;
+}
+.a123{
+display: flex;
+justify-content: space-evenly;
+margin-left: -70px;
 }
