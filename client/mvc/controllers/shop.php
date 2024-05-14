@@ -8,7 +8,7 @@ require_once './mvc/models/shopModels.php';
         $this->shop = new shopModels();
     }
 
-    static public function shop($id=1,$s=0,$e=200,$c=[]){  
+    static public function shop($id=1,$s=0,$e=200){  
         $current_page = substr($id, -1);
         $is = new self();
         $view = $is->viewProducts($current_page,$s,$e);
@@ -25,7 +25,6 @@ require_once './mvc/models/shopModels.php';
     public function viewProducts($current_page,$s,$e){
         return $this->shop->getPagination($current_page,$s,$e);
     }
-
 
 }
 ?>

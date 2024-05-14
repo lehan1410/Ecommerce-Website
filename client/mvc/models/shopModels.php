@@ -9,6 +9,7 @@
         public function getPagination($current_page,$s,$e) { 
             $a = new Database();
             $a->connect();
+            $a1 = 1;
             $products_per_page = 6;
             $offset = ($current_page - 1) * $products_per_page;
 
@@ -17,8 +18,8 @@
             $total_products = $result->fetch_assoc()['total_products'];
             $total_pages = ceil($total_products / $products_per_page);
         
-            $stmt = $a->conn->prepare("SELECT * FROM products WHERE price >= ? and price <= ? order by price LIMIT ?, ? ");
-            $stmt->bind_param("iiii", $s, $e, $offset, $products_per_page);
+            $stmt = $a->conn->prepare("SELECT * FROM products WHERE price >= ? and price <= ? and category_id = ? order by price LIMIT ?, ? ");
+            $stmt->bind_param("iiiii", $s, $e, $a1, $offset, $products_per_page);
           
             $stmt->execute();
             $result = $stmt->get_result();
@@ -28,5 +29,7 @@
             $a->conn->close();
             return [$products, $total_pages];
         }
-    }
+
+        
+}
 ?>
