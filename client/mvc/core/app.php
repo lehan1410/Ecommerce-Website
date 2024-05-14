@@ -58,6 +58,9 @@ class app {
         elseif($this->action == "changepass"){
             require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."changepass.php";
             call_user_func_array(["changepass", "changepass"], $this->params);
+        }elseif($this->action=="successOrder"){
+            require_once "./" . DIRECTORY_SEPARATOR . "mvc" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."successOrder.php";
+            call_user_func_array(["successOrder", "successOrder"], $this->params);
         }
         else {
             call_user_func_array(["home", "index"], $this->params);
