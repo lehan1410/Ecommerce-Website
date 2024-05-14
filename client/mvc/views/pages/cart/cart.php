@@ -90,10 +90,7 @@
                 <tr>
                     <td>
                         <label for="couponCode">Discount</label>
-                    </td>
-                    <td>
-                        <!-- <input type="text" name="couponCode" id="couponCode" placeholder="Enter Coupon Code"> -->
-                        <!-- <button class="normal" onclick="applyCoupon()">Apply</button> -->
+                        <td id="discount">0</td>
                     </td>
                 </tr>
                 <tr>
@@ -173,5 +170,25 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         // Set the action to the URL for other payment methods
         this.action = 'otherPayment.php';
     }
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('.normal').on('click', function(event) {
+        event.preventDefault();
+        var couponCode = $('input[name="couponCode"]').val();
+        var grandTotal = <?php echo $grandTotal; ?>;
+        var discount = 0;
+
+        if (couponCode === 'a01') {
+            discount = grandTotal * 0.02; // 2% discount
+        } else if (couponCode === 'b01') {
+            discount = grandTotal * 0.03; // 3% discount
+        }
+
+        grandTotal -= discount;
+        document.getElementById('total').textContent = "$ " + grandTotal.toFixed(2);
+        document.getElementById('discount').textContent = "$ " + discount.toFixed(2);
+    });
 });
 </script>
