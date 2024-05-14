@@ -70,8 +70,6 @@
                 </button>
             </div>
 
-
-
             <div class="col-12 mb-4">
                 <label for="description">Mô Tả</label>
                 <textarea name="description" id="description" ng-model="description" cols="30" rows="4"
