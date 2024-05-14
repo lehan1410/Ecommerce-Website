@@ -32,10 +32,6 @@ class app {
 
         $this->params = $arr?array_values($arr):[];
 
-        // echo $this->params != null;
-        // if($this->params != null){
-        //     call_user_func_array(["login", "login"], $this->params);
-        // }
         if(count($this->params) != 0 && $this->params[0] == "failed"){
             $this->params = ["Login Fail"];
         }
@@ -62,8 +58,6 @@ class app {
         else {
             call_user_func_array(["home", "index"], $this->params);
         }
-        
-        // call_user_func_array([$this->controller, $this->action], $this->params);
  
     }
 

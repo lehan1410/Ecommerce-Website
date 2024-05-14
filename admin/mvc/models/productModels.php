@@ -28,5 +28,24 @@
             return mysqli_query($this->data->conn, $sql);
         }
         
+        public function add($data1){
+            $this->data->connect();
+
+            $jsonString = urldecode($data1);
+            $data = json_decode($jsonString, true);
+
+            $name = $data['name'];
+            $category = 1;
+            $price = $data['price'];
+            $sale = $data['sale'];
+            $isFlashSale = $data['isFlashSale'];
+            $color = $data['color'];
+            $size = $data['size'];
+            $quantity = $data['quantity'];
+            $image = "../mvc/assets/img/products/image.png";
+            $stmt = $this->data->conn->prepare("INSERT INTO products (name, category_id, price, coupon_id, flash, color_id, size_id, quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssss", $name, $category, $price, $sale, $isFlashSale, $color, $size, $quantity, $image);
+            $stmt->execute();
+        }
 
     }
