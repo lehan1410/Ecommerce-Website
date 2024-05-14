@@ -50,4 +50,14 @@ class product extends controller{
     return $this->data->viewCategory();
     }
 
+    static function addProduct($data){
+        $instance = new self();
+        $view = $instance->add_product($data);
+    }
+
+    public function add_product($data){
+        return $this->data->add($data);
+        }
+
+
     }
